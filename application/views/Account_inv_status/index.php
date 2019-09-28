@@ -20,9 +20,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($status_details as $status) {?>
                         <tr>
-                            <td><?php echo $status['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $status['name']; ?></td>
                             <td>
                                 <a href="<?php echo site_url('Account_inv_status/edit/' . $status['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>

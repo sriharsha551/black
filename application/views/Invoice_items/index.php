@@ -23,9 +23,10 @@
                         </tr>
                        </thead>
              <tbody>
+             <?php $index=1;?>
                     <?php foreach($inv as $d) {?>
                         <tr>
-                            <td><?php echo $d['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $d['item_name']; ?></td>
                             <td><?php echo $d['price']; ?></td>
                             <td><?php echo $d['quality']; ?></td>

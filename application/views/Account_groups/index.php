@@ -25,6 +25,7 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($Account_groups as $d) {
                             if($d['enabled']=='0')
                             {
@@ -36,7 +37,7 @@
                             }
                             ?>
                         <tr>
-                            <td><?php echo $d['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $d['name']; ?></td>
                             <td><?php echo $d['enabled'];?></td>
                             <td>

@@ -20,9 +20,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($trans_types as $type) {?>
                         <tr>
-                            <td><?php echo $type['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $type['trans_type']; ?></td>
                             <td>
                                 <a href="<?php echo site_url('Account_trans_type/edit/' . $type['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>

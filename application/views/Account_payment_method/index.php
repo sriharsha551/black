@@ -20,9 +20,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($method_details as $method) {?>
                         <tr>
-                            <td><?php echo $method['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $method['name']; ?></td>
                             <td>
                                 <a href="<?php echo site_url('Account_payment_method/edit/' . $method['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>

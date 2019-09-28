@@ -22,9 +22,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($type_details as $type) {?>
                         <tr>
-                            <td><?php echo $type['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $type['name']; ?></td>
                             <td><?php echo $type['group_name']?></td>
                             <td><?php echo $type['enabled'] == "1" ? "Yes" : "No"; ?></td>

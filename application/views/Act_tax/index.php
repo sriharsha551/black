@@ -25,9 +25,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($taxes as $d) {?>
                         <tr>
-                            <td><?php echo $d['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $d['name']; ?></td>
                             <td><?php echo $d['value'] ?></td>
                             <td>
