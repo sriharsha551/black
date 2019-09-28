@@ -105,13 +105,21 @@ class Invoice_payments_model extends CI_Model
         $this->db->update('act_invoices',$params);
     }
 
-    function delete_invoice($id)
+    function delete_invoice_pay($id)
     {
         $params['deleted_at'] = date("Y-m-d H:i:s");
         $this->db->set(array('delete_status'=>'1'));
         $this->db->where('id',$id);
         return $this->db->update('act_inv_payment');
 
+    }
+
+    function delete_transaction($id)
+    {
+        $params['deleted_at'] = date("Y-m-d H:i:s");
+        $this->db->set(array('delete_status'=>'1'));
+        $this->db->where('inv_id',$id);
+        return $this->db->update('act_transaction');    
     }
 }
 ?>

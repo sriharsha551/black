@@ -37,13 +37,14 @@ class Bill_payments extends Admin_Controller
         $this->data['coa_ids'] = $this->Bill_payments_model->get_coa_ids();
         $this->data['tran_ids'] = $this->Bill_payments_model->get_tran_ids();
         $this->data['pay_ids'] = $this->Bill_payments_model->get_pay_ids();
+        $this->data['amounts'] = $this->Bill_payments_model->get_bill_amount();
 
         $this->form_validation->set_rules('bill_id','Bill Id','required');
         $this->form_validation->set_rules('coa_id','Coa id','required');
         $this->form_validation->set_rules('paid_dt','Paid Date','required');
         $this->form_validation->set_rules('amount','Amount','required');
         $this->form_validation->set_rules('amount_paid','Amount Paid','required');
-        $this->form_validation->set_rules('description','Description','required');
+        // $this->form_validation->set_rules('description','Description','required');
         $this->form_validation->set_rules('payment_method','Pay Method','required');
         // $this->form_validation->set_rules('remarks','Remarks','required');
         // $this->form_validation->set_rules('tran_type_id','Transactin type','required');
@@ -69,6 +70,7 @@ class Bill_payments extends Admin_Controller
         }
         else
         {
+            $_SESSION['edit_error'] = true;
             $this->template->public_render('Bill_payments/add', $this->data);      
         }
     }
@@ -83,6 +85,7 @@ class Bill_payments extends Admin_Controller
         $this->data['coa_ids'] = $this->Bill_payments_model->get_coa_ids();
         $this->data['tran_ids'] = $this->Bill_payments_model->get_tran_ids();
         $this->data['pay_ids'] = $this->Bill_payments_model->get_pay_ids();
+        $this->data['amounts'] = $this->Bill_payments_model->get_bill_amount();
 
         if(isset($this->data['bill']['id']))
         {
@@ -90,7 +93,7 @@ class Bill_payments extends Admin_Controller
             $this->form_validation->set_rules('coa_id','Coa id','required');
             $this->form_validation->set_rules('paid_dt','Paid Date','required');
             $this->form_validation->set_rules('amount','Amount','required');
-            $this->form_validation->set_rules('description','Description','required');
+            // $this->form_validation->set_rules('description','Description','required');
             $this->form_validation->set_rules('payment_method','Payment Method','required');
             // $this->form_validation->set_rules('remarks','Remarks','required');
             // $this->form_validation->set_rules('tran_type_id','Transactin type','required');
@@ -110,10 +113,12 @@ class Bill_payments extends Admin_Controller
                     $status = 3;
                 }
                 $this->Bill_payments_model->update_bill_pay($id,$params);
+                $this->Bill_payments_model->update_bill($status,$params['bill_id']);
                 redirect('Bill_payments/index');
             }
             else
             {
+                $_SESSION['edit_error'] = true;
                 $this->template->public_render('Bill_payments/edit', $this->data); 
             }
         }
@@ -123,11 +128,13 @@ class Bill_payments extends Admin_Controller
 
     function remove($id)
     {
-        $inv = $this->Bill_payments_model->get_bill_pay($id);
+        $bill = $this->Bill_payments_model->get_bill_pay($id);
         // check if the stage exists before trying to delete it
-        if(isset($inv['id']))
+        if(isset($bill['id']))
         {
             $this->Bill_payments_model->delete_bill_pay($id);
+            $this->Bill_payments_model->delete_transaction($inv['bill_id']);
+
             redirect('Bill_payments/index');
         }
     }

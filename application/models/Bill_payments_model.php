@@ -29,6 +29,14 @@ class Bill_payments_model extends CI_Model
         return $this->db->get_where('act_bill_payment',array('id'=>$id,"delete_status"=>'0'))->row_array();
     }
 
+    function get_bill_amount()
+    {
+        $this->db->select('id,total_amt');
+        $this->db->from('act_bills');
+        $this->db->where("delete_status",'0');
+        return $this->db->get()->result();
+    }
+
     function get_bill_ids()
     {
         $this->db->select('id,bill_num');
@@ -104,6 +112,14 @@ class Bill_payments_model extends CI_Model
         $this->db->where('id',$id);
         return $this->db->update('act_bill_payment');
 
+    }
+
+    function delete_transaction($id)
+    {
+        $params['deleted_at'] = date("Y-m-d H:i:s");
+        $this->db->set(array('delete_status'=>'1'));
+        $this->db->where('bill_id',$id);
+        return $this->db->update('act_transaction');    
     }
 }
 ?>
