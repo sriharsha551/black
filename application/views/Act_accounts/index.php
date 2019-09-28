@@ -29,9 +29,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($taxes as $d) {?>
                         <tr>
-                            <td><?php echo $d['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $d['acc_name'] ?></td>
                             <td><?php echo $d['opening_balance'] ?></td>
                             <td><?php echo $d['balance']?></td>

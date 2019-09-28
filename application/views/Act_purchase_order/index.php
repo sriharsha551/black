@@ -33,7 +33,7 @@
                         </thead>
                         <?php foreach ($purchases as $purchases) { ?>
                         <tr>
-                            <td><?php echo $purchases['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $purchases['ponumber']?></td>
                             <td><?php echo $purchases['sup_id']; ?></td>
                             <td><?php echo $purchases['sup_name']; ?></td>

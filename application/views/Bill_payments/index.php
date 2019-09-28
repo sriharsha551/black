@@ -30,9 +30,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($bill as $bill) { ?>
                         <tr>
-                            <td><?php echo $bill['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $bill['bill_id']; ?></td>
                             <td><?php echo $bill['coa_id']; ?></td>
                             <td><?php echo $bill['paid_dt']; ?></td>

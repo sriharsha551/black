@@ -24,9 +24,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($bill_status as $d) {?>
                         <tr>
-                            <td><?php echo $d['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $d['name']; ?></td>
                             <td>
                                 <a href="<?php echo site_url('Act_bill_status/edit/' . $d['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>

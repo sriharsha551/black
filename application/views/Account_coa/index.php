@@ -22,9 +22,10 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($coa_details as $coa) {?>
                         <tr>
-                            <td><?php echo $coa['id']; ?></td>
+                            <td><?php echo $index++; ?></td>
                             <td><?php echo $coa['name']; ?></td>
                             <td><?php echo $coa['type_name']?></td>
                             <td><?php echo $coa['enabled'] == "1" ? "Yes" : "No"; ?></td>
