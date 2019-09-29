@@ -49,8 +49,9 @@ class Account_customer_model extends CI_Model
     {
         $this->db->where('t1.delete_status','0');
         $this->db->order_by('id', 'desc');
-        $this->db->select('t1.*,t2.name as tax_name');
+        $this->db->select('t1.*,t2.name as tax_name,  t3.name as prj_name');
         $this->db->join('act_tax as t2','t1.tax_number=t2.id');
+        $this->db->join('prj_list as t3', 't1.prj_id = t3.id','inner');
         if(isset($params) && !empty($params))
         {
             $this->db->limit($params['limit'], $params['offset']);
@@ -65,6 +66,15 @@ class Account_customer_model extends CI_Model
     {
         $this->db->insert('act_customer',$params);
         return $this->db->insert_id();
+    }
+
+    function get_all_prj_list()
+    {
+        $this->db->where('delete_status','0');
+        $this->db->select('id, name');
+        $this->db->from('prj_list');
+        $query = $this->db->get();
+        return $query->result_array();
     }
     
     /*

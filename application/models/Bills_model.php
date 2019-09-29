@@ -16,12 +16,13 @@ class Bills_model extends CI_Model
     
     function get_all_bills()
     {
-        $this->db->select('t1.*,t2.name as bill_status,t3.ponumber as order_name,t4.name as supplier,t5.name as cr_days,t5.days,t6.name as tax');
+        $this->db->select('t1.*,t2.name as bill_status,t3.ponumber as order_name,t4.name as supplier,t5.name as cr_days,t5.days,t6.name as tax,  t7.name as prj_name');
         $this->db->join('act_bill_status as t2', 't2.id = t1.bill_status', 'inner');
         $this->db->join('act_purchase_order as t3','t1.order_num = t3.id','inner');
         $this->db->join('suppliers as t4', 't1.sup_id = t4.id', 'inner');
         $this->db->join('act_cr_days as t5', 't1.cr_days_id= t5.id', 'inner');
         $this->db->join('act_tax as t6', 't6.id = t1.tax_id', 'inner');
+        $this->db->join('prj_list as t7', 't1.prj_id = t7.id','inner');
         return $this->db->get_where('act_bills t1',array('t1.delete_status'=>'0'))->result_array();
     }
 
@@ -58,6 +59,15 @@ class Bills_model extends CI_Model
         $this->db->from('act_bill_status');
         $this->db->select('id,name');
         return $this->db->get()->result();
+    }
+
+    function get_all_prj_list()
+    {
+        $this->db->where('delete_status','0');
+        $this->db->select('id, name');
+        $this->db->from('prj_list');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     function get_order()

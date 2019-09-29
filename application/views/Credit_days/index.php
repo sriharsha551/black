@@ -15,19 +15,16 @@
                     <table class="datatables-demo table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Days</th>
-                            <th>Action</th>
+                            <th>ID</th>
+                            <th>NAME</th>
+                            <th>ACTION</th>
                         </tr>
                        </thead>
              <tbody>
-             <?php $index=1;?>
                     <?php foreach($cr as $d) {?>
                         <tr>
-                            <td><?php echo $index++; ?></td>
+                            <td><?php echo $d['id']; ?></td>
                             <td><?php echo $d['name']; ?></td>
-                            <td><?php echo $d['days']; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('Credit_days/edit/' .$d['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>
                                      <a href="<?php echo site_url('Credit_days/delete/'.$d['id']); ?>" class="btn btn-danger btn-xs mr-1"><span class="fa fa-trash"></span></a>

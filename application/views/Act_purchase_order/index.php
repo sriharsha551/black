@@ -21,6 +21,7 @@
                             <th>Purchase Order No.</th>
                             <th>Supplier Id</th>
                             <th>Supplier Name</th>
+                            <th>Project Name</th>
                             <th>Supplier Email</th>
                             <th>Supplier Phone</th>
                             <th>Supplier Address</th>
@@ -37,6 +38,7 @@
                             <td><?php echo $purchases['ponumber']?></td>
                             <td><?php echo $purchases['sup_id']; ?></td>
                             <td><?php echo $purchases['sup_name']; ?></td>
+                            <td><?php echo $purchases['prj_name']; ?></td>
                             <td><?php echo $purchases['sup_email']; ?></td>
                             <td><?php echo $purchases['sup_phone']; ?></td>
                             <td><?php echo $purchases['sup_address']; ?></td>

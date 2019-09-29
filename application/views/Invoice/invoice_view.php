@@ -59,6 +59,17 @@
 								<input type="text" name="customer_name" value="<?php echo $selected->name ? $selected->name : $invoices['customer_name']; ?>" class="form-control" id="customer_name" disabled />
 							</div>
 						</div>
+						<div class="col-md-6">
+                        	<label for="prj_id" class="col-md-6"><span class="text-danger">*</span>Project</label>
+								<div class="form-group">
+									<select name="prj_id" class="form-control" id="prj_id"  required disabled>
+                                		<option value="">Select Project</option>
+                                		<?php foreach ($prj_list as $prj) { ?>
+                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($invoices['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+                                		<?php } ?>
+                           			</select> 
+		 						</div>
+						</div>
                         <div class="col-md-6">
 							<label for="attach_link" class="form-label"><span class="text-danger">*</span>Customer Email</label>
 							<div class="form-group">

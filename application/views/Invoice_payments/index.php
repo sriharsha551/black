@@ -20,6 +20,7 @@
                             <th>ID</th>
                             <th>Invoice Num</th>
                             <!-- <th>Coa Id</th> -->
+                            <th>Project</th>
                             <th>Paid Date</th>
                             <th>Amount</th>
                             <th>Amount Recieved </th>
@@ -36,6 +37,7 @@
                             <td><?php echo $index++; ?></td>
                             <td><?php echo $invoice['inv_id']; ?></td>
                             <!-- <td><?php echo $invoice['coa_id']; ?></td> -->
+                            <td><?php echo $invoice['prj_name']; ?></td>
                             <td><?php echo $invoice['paid_dt']; ?></td>
                             <td><?php echo $invoice['amount']; ?></td>
                             <td><?php echo $invoice['amount_recieved']; ?></td>

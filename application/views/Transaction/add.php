@@ -17,11 +17,11 @@
                    	<div class="row clearfix">
 					<div class="col-md-6">
                                 <label for="date_transaction" class="col-md-6"><span class="text-danger">*</span>Date of transaction</label>
-			
+								<div class="form-group">
 								<input type="date" name="date_transaction" value="<?php echo $this->input->post('date_transaction'); ?>" class="form-control" id="date_transaction" />
 								<span class="text-danger"><?php echo form_error('date_transaction');?></span>
 								
-
+                    </div>
 					</div>
 					<div class="col-md-6">
                              
@@ -36,6 +36,44 @@
 
 					 </div>
 					 </div>
+					 <div class="col-md-6">
+                             
+	<label for="prj_id" class="col-md-6"><span class="text-danger">*</span>Project</label>
+			<div class="form-group">
+				<select name="prj_id" class="form-control" id="prj_id"  required>
+                    <option value="">Select Project</option>
+                    <?php foreach ($prj_list as $prj) { ?>
+                    <option value="<?php echo $prj['id']; ?>" <?php echo ($this->input->post('prj_id') == $prj['id']) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+                                <?php } ?>
+                           </select> 
+		 </div>
+</div> 
+					 <div class="col-md-6">
+                             
+							 <label for="coa_id" class="col-md-6"><span class="text-danger">*</span>Invoice name</label>
+							 <div class="form-group">
+							<select name="inv_id" class="form-control" id="inv_id"  required>
+							 <option value="">Select invoice</option>
+							 <?php foreach ($inv_list as $coa) { ?>
+							 <option value="<?php echo $coa['id']; ?>" <?php echo ($this->input->post('inv_id') == $coa['id']) ? 'selected="selected"' : ""; ?> ><?php echo $coa['customer_name']; ?></option>
+							 <?php } ?>
+						 </select>
+
+				  </div>
+				  </div>
+				  <div class="col-md-6">
+                             
+							 <label for="bill_id" class="col-md-6"><span class="text-danger">*</span>Bill name</label>
+							 <div class="form-group">
+							<select name="bill_id" class="form-control" id="bill_id"  required>
+							 <option value="">Select bill</option>
+							 <?php foreach ($bill_list as $coa) { ?>
+							 <option value="<?php echo $coa['id']; ?>" <?php echo ($this->input->post('bill_id') == $coa['id']) ? 'selected="selected"' : ""; ?> ><?php echo $coa['sup_name']; ?></option>
+							 <?php } ?>
+						 </select>
+
+				  </div>
+				         </div>
 				     	        <div class="col-md-6">
                                 <label for="purpose" class="form-group"><span class="text-danger">*</span>Purpose</label>
 								<div class='form-group'>
@@ -45,10 +83,10 @@
 								</div>
 	
 								<div class="col-md-6">
-                                <label for="payment_amt" class="form-group"><span class="text-danger">*</span>Payment amount</label>
+                                <label for="available_amt" class="form-group"><span class="text-danger">*</span>Available amount</label>
 								 <div class='form-group'>
-								<input type="text" name="payment_amt" value="<?php echo $this->input->post('payment_amt'); ?>" class="form-control" id="payment_amt" />
-								<span class="text-danger"><?php echo form_error('payment_amt');?></span>
+								<input type="text" name="available_amt" value="<?php echo $this->input->post('available_amt'); ?>" class="form-control" id="available_amt" />
+								<span class="text-danger"><?php echo form_error('available_amt');?></span>
 				                 </div>
 								 </div>
 
@@ -58,15 +96,17 @@
 								<div class="form-group">
 								<input type="textarea" name="remarks" value="<?php echo $this->input->post('remarks'); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php echo form_error('remarks');?></span>
-		                    </div>
-					<div class="box-footer">
-						<button type="submit" class="btn btn-success">
-							<i class="fa fa-check"></i> Save
-						</button>
-					</div>
+		                        </div>
+						     	</div>
+					           <div class="box-footer">
+					        	<button type="submit" class="btn btn-success">
+					    		<i class="fa fa-check"></i> Save
+					         	</button>
+					         </div>
     <?php echo form_close(); ?>
 </div>
-        
+</div>
+</div>
 </div>
 </div>    
 

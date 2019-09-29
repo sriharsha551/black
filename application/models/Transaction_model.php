@@ -13,19 +13,42 @@ class Transaction_model extends CI_Model
             $this->db->limit($params['limit'], $params['offset']);
         }
         $this->db->where('t1.delete_status', '0');
-        $this->db->select('t1.*,t2.name as coa_name');
+        $this->db->select('t1.*,t2.name as coa_name, t3.name as prj_name');
         $this->db->join('act_coa as t2 ','t1.coa_id=t2.id','inner');
-
+        $this->db->join('prj_list as t3', 't1.prj_id = t3.id','inner');
         $this->db->from('act_transaction as t1');
         $query = $this->db->get();
         return $query->result_array();
 
     }
 
+    function get_all_prj_list()
+    {
+        $this->db->where('delete_status','0');
+        $this->db->select('id, name');
+        $this->db->from('prj_list');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     function get_all_coa_list($coa = array())
     {
     $this->db->select('id,name');
     $this->db->from('act_coa');
+    $query = $this->db->get();
+    return $query->result_array();
+    }
+    function get_all_inv_list($coa = array())
+    {
+    $this->db->select('id,customer_name');
+    $this->db->from('act_invoices');
+    $query = $this->db->get();
+    return $query->result_array();
+    }
+    function get_all_bill_list($coa = array())
+    {
+    $this->db->select('id,sup_name');
+    $this->db->from('act_bills');
     $query = $this->db->get();
     return $query->result_array();
     }

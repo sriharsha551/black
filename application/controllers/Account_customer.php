@@ -47,10 +47,12 @@ class Account_customer extends Admin_Controller{
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
         $this->load->library('form_validation');
         $this->data['Tax'] = $this->Account_customer_model->get_tax();
+        $this->data['prj_list'] = $this->Account_customer_model->get_all_prj_list();
         $this->form_validation->set_rules('name','Name','required|max_length[255]');
+        $this->form_validation->set_rules('prj_id','prj_id','required');
         $this->form_validation->set_rules('email','email','required|max_length[255]');
         $this->form_validation->set_rules('phone','phone','required|max_length[11]');
-        $this->form_validation->set_rules('address','address','required|max_length[11]');
+        $this->form_validation->set_rules('address','address','required');
 		if($this->form_validation->run())     
         {   
             $params = array(
@@ -59,6 +61,7 @@ class Account_customer extends Admin_Controller{
                 'phone' => $this->input->post('phone'),
                 'address' => $this->input->post('address'),
                 'tax_number'=>$this->input->post('tax'),
+                'prj_id' => $this->input->post('prj_id')
             );
             
             $Account_customer_id = $this->Account_customer_model->add_Account_customer($params);
@@ -82,14 +85,15 @@ class Account_customer extends Admin_Controller{
         $this->data['Account_customer'] = $this->Account_customer_model->get_Account_customer($id);
         $this->data['Account_customer']['tax'] = $this->Account_customer_model->get_in_tax($this->data['Account_customer']['tax_number']);
         $this->data['Tax']=$this->Account_customer_model->get_tax();
+        $this->data['prj_list'] = $this->Account_customer_model->get_all_prj_list();
         if(isset($this->data['Account_customer']['id']))
         {
             $this->load->library('form_validation');
-
+            $this->form_validation->set_rules('prj_id','prj_id','required');
 			$this->form_validation->set_rules('name','Name','required|max_length[255]');
             $this->form_validation->set_rules('email','email','required|max_length[255]');
         $this->form_validation->set_rules('phone','phone','required|max_length[11]');
-        $this->form_validation->set_rules('address','address','required|max_length[11]');         
+        $this->form_validation->set_rules('address','address','required');         
 			if($this->form_validation->run())     
             {   
                 $params = array(

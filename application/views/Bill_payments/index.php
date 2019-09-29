@@ -20,6 +20,7 @@
                             <th>ID</th>
                             <th>Bill</th>
                             <th>Coa</th>
+                            <th>Project</th>
                             <th>Paid Date</th>
                             <th>Amount</th>
                             <th>Amount Paid</th>
@@ -36,6 +37,7 @@
                             <td><?php echo $index++; ?></td>
                             <td><?php echo $bill['bill_id']; ?></td>
                             <td><?php echo $bill['coa_id']; ?></td>
+                            <td><?php echo $bill['prj_name']; ?></td>
                             <td><?php echo $bill['paid_dt']; ?></td>
                             <td><?php echo $bill['amount']; ?></td>
                             <td><?php echo $bill['amount_paid'];?></td>

@@ -18,7 +18,7 @@ class  Invoice_items_model extends CI_Model
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        $this->db->where('t1.delete_status', '0');
+        $this->db->where('t1.lock_st', '0');
         $this->db->select('t1.id,t1.item_name,t1.price,t1.quality');    
         $this->db->from('act_inv_items as t1');
         $query = $this->db->get();
@@ -41,14 +41,10 @@ function update_invoice_items($id,$params)
     $this->db->where('id',$id);
     return $this->db->update('act_inv_items',$params);
 }
-function get_invoice_item_detail($id)
-    {
-        return $this->db->get_where('act_inv_items',array('id'=>$id,"delete_status"=>'0'))->row_array();
-    }
 function delete($id)
     {
         $this->db->where('id',$id);
-        return $this->db->update('act_inv_items',array('deleted_at'=> date('Y-m-d H:i:s'), 'delete_status' => '1'));
+        return $this->db->update('act_inv_items',array('deleted_at'=> date('Y-m-d H:i:s'), 'lock_st' => '1'));
 
     }
 }

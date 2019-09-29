@@ -37,7 +37,7 @@ class Bill_payments extends Admin_Controller
         $this->data['coa_ids'] = $this->Bill_payments_model->get_coa_ids();
         $this->data['tran_ids'] = $this->Bill_payments_model->get_tran_ids();
         $this->data['pay_ids'] = $this->Bill_payments_model->get_pay_ids();
-
+        $this->data['prj_list'] = $this->Bill_payments_model->get_all_prj_list();
         $this->form_validation->set_rules('bill_id','Bill Id','required');
         $this->form_validation->set_rules('coa_id','Coa id','required');
         $this->form_validation->set_rules('paid_dt','Paid Date','required');

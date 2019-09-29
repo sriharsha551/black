@@ -81,6 +81,17 @@
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('sup_id');?></span>
                             </div>
                         </div>
+						<div class="col-md-6">
+                        	<label for="prj_id" class="col-md-6"><span class="text-danger">*</span>Project</label>
+								<div class="form-group">
+									<select name="prj_id" class="form-control" id="prj_id"  required>
+                                		<option value="">Select Project</option>
+                                		<?php foreach ($prj_list as $prj) { ?>
+                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+                                		<?php } ?>
+                           			</select> 
+		 						</div>
+						</div>
                         <div class="col-md-6" style="display:none">
                             <label for="prj_id" class="form-label"><span class="text-danger">*</span>Items</label>
                             <div class='form-group'>
