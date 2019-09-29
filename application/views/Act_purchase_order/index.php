@@ -19,7 +19,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Purchase Order No.</th>
-                            <th>Supplier Id</th>
                             <th>Supplier Name</th>
                             <th>Project Name</th>
                             <th>Supplier Email</th>
@@ -32,11 +31,11 @@
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <?php $index=1;?>
                         <?php foreach ($purchases as $purchases) { ?>
                         <tr>
                             <td><?php echo $index++; ?></td>
                             <td><?php echo $purchases['ponumber']?></td>
-                            <td><?php echo $purchases['sup_id']; ?></td>
                             <td><?php echo $purchases['sup_name']; ?></td>
                             <td><?php echo $purchases['prj_name']; ?></td>
                             <td><?php echo $purchases['sup_email']; ?></td>

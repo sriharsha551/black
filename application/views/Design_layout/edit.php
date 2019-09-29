@@ -79,7 +79,7 @@
                                     class="form-control" id="review_status">
                                     <?php foreach ($review_statuses as $review_status) {?>
                                     <option value="<?php echo $review_status['id'] ?>"
-                                        <?php echo ($Design_layout['review_status'] == $review_status['id']) ? 'selected="selected"' : "" ?>>
+                                        <?php echo (($Design_layout['review_status'] == $review_status['id']) || $this->input->post('review_status') ==$review_status['id'] ) ? 'selected="selected"' : "" ?>>
                                         <?php echo $review_status['review_status_name'] ?></option>
                                     <?php } ?>
                                 </select>

@@ -5,6 +5,18 @@
 <h4 class="font-weight-bold py-2 mb-4">
 	<span class="text-muted font-weight-light"><?php echo $pagetitle; ?></span>
 	<?php echo $breadcrumb; ?>
+	<?php $variable = "";?>
+	<script type = "text/javascript">
+	function change(value){
+		let display;
+		if(value == 3){
+			document.getElementById('hide').style.display = "none";
+		}
+		else{
+			document.getElementById('hide').style.display = "block";
+		}	}
+	</script>
+
 </h4>
 
       	<div class="card mb-4">
@@ -59,7 +71,7 @@
                         <div class="col-md-6">
 							<label for="review_status" class="form-label"><span class="text-danger">*</span>Review Status</label>
 							<div class="form-group">
-							<select name="review_status" value="<?php echo $this->input->post('review_status')?>" class="form-control" id="review_status">
+							<select name="review_status" class="form-control" id="review_status" onchange="change(value);">
                                 	<?php foreach ($review_statuses as $review_status) {?>
                                 	<option value="<?php echo $review_status['id'] ?>" <?php echo ($concept['review_status'] == $review_status['id']) ? 'selected="selected"' : "" ?> ><?php echo $review_status['review_status_name'] ?></option>
                                 	<?php } ?>
@@ -74,8 +86,9 @@
 								<span class="text-danger"><?php echo form_error('remarks');?></span>
 							</div>
 						</div>
-						<label class="checkbox-inline"><input type="checkbox" name="check" value="1">Revision Required</label>
-
+						<div class="col-md-6">
+						<label id="hide"><input type="checkbox" name="check" value="1">Revision Required</label>
+						</div>
                         <!-- <div class="col-md-6">
 							<label for="revisions" class="form-label"><span class="text-danger">*</span>Revisions</label>
 							<div class="form-group">
@@ -95,3 +108,5 @@
 
 </div>
 <!-- / Content -->
+
+

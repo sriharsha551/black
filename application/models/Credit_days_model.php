@@ -13,8 +13,8 @@ class  Credit_days_model extends CI_Model
         {
             $this->db->limit($params['limit'], $params['offset']);
         }
-        $this->db->where('t1.lock_st', '0');
-        $this->db->select('t1.id,t1.name');    
+        $this->db->where('t1.delete_status', '0');
+        $this->db->select('t1.id,t1.name,t1.days');    
         $this->db->from('act_cr_days as t1');
         $query = $this->db->get();
         return $query->result_array();
@@ -35,10 +35,14 @@ class  Credit_days_model extends CI_Model
         $this->db->where('id',$id);
         return $this->db->update('act_cr_days',$params);
     }
+    function get_credit_days_detail($id)
+    {
+        return $this->db->get_where('act_cr_days',array('id'=>$id,"delete_status"=>'0'))->row_array();
+    }
     function delete($id)
     {
         $this->db->where('id',$id);
-        return $this->db->update('act_cr_days',array('delete_at'=> date('Y-m-d H:i:s'), 'lock_st' => '1'));
+        return $this->db->update('act_cr_days',array('deleted_at'=> date('Y-m-d H:i:s'), 'delete_status' => '1'));
 
     }
 } 

@@ -5,7 +5,7 @@ class Credit_days extends Admin_Controller
     public function __construct() {
         parent :: __construct();
         $this->load->model('Credit_days_model');
-        $this->page_title->push('credit days');
+        $this->page_title->push('Credit Days');
         $this->data['pagetitle'] = $this->page_title->show();
           /* Breadcrumbs :: Common */
           $this->breadcrumbs->unshift(1, 'Credit days', 'Credit_days');
@@ -79,5 +79,9 @@ public function delete($id)
 {
     $this->Credit_days_model->delete($id);
     redirect("Credit_days/");
+    if (isset($inv['id'])) {
+        $this->Transaction_model->delete_transactions($id);
+        redirect('Credit_days/index');
+}
 }
 }

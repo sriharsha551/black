@@ -108,7 +108,7 @@
 									<select name="prj_id" class="form-control" id="prj_id"  required>
                                 		<option value="">Select Project</option>
                                 		<?php foreach ($prj_list as $prj) { ?>
-                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($bills['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?						php echo $prj['name']; ?></option>
+                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($bills['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
                                 		<?php } ?>
                            			</select> 
 		 						</div>
@@ -156,7 +156,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="percentage" class="form-label"><span class="text-danger">*</span>Description</label>
+                <label for="percentage" class="form-label"><span class="text-danger"></span>Description</label>
                 <div class="form-group">
                     <input type="text" name="description" value="<?php echo ($this->input->post('description') ? $this->input->post('description') : $bills['description']); ?>" class="form-control" id="description" />
                     <span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('description');?></span>

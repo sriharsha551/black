@@ -19,7 +19,7 @@
             $this->db->select('p.id,p.ponumber,p.sup_id,p.sup_name,p.sup_email,p.sup_phone,p.sup_address,i.material_name,p.description,p.amount,p.remarks, t3.name as prj_name');
             $this->db->from('act_purchase_order as p');
             $this->db->join('prj_mtrl_items as i','i.id = p.items','inner');
-            $this->db->join('prj_list as t3', 't1.prj_id = t3.id','inner');
+            $this->db->join('prj_list as t3', 'p.prj_id = t3.id','inner');
             return $this->db->get()->result_array();
         }
 

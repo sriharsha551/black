@@ -53,6 +53,7 @@
 						 />
 						</div>
 						</div>
+
                         <div class="col-md-6">
 							<label for="name" class="form-label"><span class="text-danger">*</span>Customer Name</label>
 							<div class="form-group">
@@ -142,12 +143,12 @@
 							</div>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
 							<label for="percentage" class="form-label"><span class="text-danger">*</span>Quantity</label>
 							<div class="form-group">
 								<input type="text" name="quantity" value="<?php echo ($this->input->post('quantity') ? $this->input->post('quantity') : $invoices['quantity']); ?>" class="form-control" id="quantity" disabled />
 							</div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
 							<label for="percentage" class="form-label"><span class="text-danger">*</span>Price</label>
 							<div class="form-group">

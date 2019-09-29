@@ -22,8 +22,12 @@
                                 <label for="name" class="form-label"><span class="text-danger">*</span>NAME</label>
 								<input type="text" name="name" value="<?php echo $this->input->post('name'); ?>" class="form-control" id="name" />
 								<span class="text-danger"><?php echo form_error('name');?></span>
-					
 					</div>
+					<div class="form-group">
+                                <label for="days" class="form-label"><span class="text-danger">*</span>Days</label>
+								<input type="text" name="days" value="<?php echo $this->input->post('days') ?>" class="form-control" id="days" />
+								<span class="text-danger"><?php echo form_error('days');?></span>
+                            </div>
 					<div class="box-footer">
 						<button type="submit" class="btn btn-success">
 							<i class="fa fa-check"></i> Save

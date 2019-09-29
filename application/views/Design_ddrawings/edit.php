@@ -23,7 +23,7 @@
                                 <select name="prj_id" class="form-control" id="prj_id">
                                     <?php foreach ($proj_list as $proj) { ?>
                                     <option value="<?php echo $proj['id'] ?>"
-                                        <?php echo ($design_ddrawings['prj_id'] == $proj['id']) ? 'selected="selected"' : "" ?>>
+                                        <?php echo (($design_ddrawings['prj_id'] == $proj['id']) || ($this->input->post('prj_id') == $proj['id'])) ? 'selected="selected"' : "" ?>>
                                         <?php echo $proj['name'] ?></option>
                                     <?php } ?>
                                 </select>

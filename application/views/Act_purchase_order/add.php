@@ -146,7 +146,7 @@
                         <div class="col-md-6">
 							<label for="percentage" class="form-label"><span class="text-danger">*</span>Amount</label>
 							<div class="form-group">
-								<input type="text" name="amount" value="<?php if(isset($selected_item))echo ($selected_item['price']*$selected_item['qty']); ?>" class="form-control" id="amount" />
+								<input type="text" name="amount" value="<?php if(isset($selected_item))echo ($selected_item['price']); ?>" class="form-control" id="amount" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount');?></span>
 							</div>
                         </div>
