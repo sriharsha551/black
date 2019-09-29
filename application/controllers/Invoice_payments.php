@@ -44,7 +44,7 @@ class Invoice_payments extends Admin_Controller
         $this->form_validation->set_rules('paid_dt','Paid Date','required');
         $this->form_validation->set_rules('amount','Amount','required');
         $this->form_validation->set_rules('amount_recieved','Amount Recieved','required');       
-        $this->form_validation->set_rules('description','Description','required');
+        // $this->form_validation->set_rules('description','Description','required');
         $this->form_validation->set_rules('pay_method','Pay Method','required');
         // $this->form_validation->set_rules('remarks','Remarks','required');
         // $this->form_validation->set_rules('tran_type_id','Transactin type','required');
@@ -70,6 +70,7 @@ class Invoice_payments extends Admin_Controller
         }
         else
         {
+            $_SESSION['edit_error'] = true;
             $this->template->public_render('Invoice_payments/add', $this->data);      
         }
     }
@@ -84,6 +85,7 @@ class Invoice_payments extends Admin_Controller
         $this->data['coa_ids'] = $this->Invoice_payments_model->get_coa_ids();
         $this->data['tran_ids'] = $this->Invoice_payments_model->get_tran_ids();
         $this->data['pay_ids'] = $this->Invoice_payments_model->get_pay_ids();
+        $this->data['amounts'] = $this->Invoice_payments_model->get_inv_amount();
 
         if(isset($this->data['invoice']['id']))
         {
@@ -92,10 +94,10 @@ class Invoice_payments extends Admin_Controller
             $this->form_validation->set_rules('paid_dt','Paid Date','required');
             $this->form_validation->set_rules('amount','Amount','required');
             $this->form_validation->set_rules('amount_recieved','Amount Recieved','required');       
-            $this->form_validation->set_rules('description','Description','required');
+            // $this->form_validation->set_rules('description','Description','required');
             $this->form_validation->set_rules('pay_method','Pay Method','required');
             // $this->form_validation->set_rules('remarks','Remarks','required');
-            $this->form_validation->set_rules('tran_type_id','Transactin type','required');
+            // $this->form_validation->set_rules('tran_type_id','Transactin type','required');
 
             if($this->form_validation->run())     
             {   
@@ -112,10 +114,12 @@ class Invoice_payments extends Admin_Controller
                     $status = 3;
                 }
                 $this->Invoice_payments_model->update_invoice_pay($id,$params);
+                $this->Invoice_payments_model->update_invoice($status,$params['inv_id']);
                 redirect('Invoice_payments/index');
             }
             else
             {
+                $_SESSION['edit_error'] = true;
                 $this->template->public_render('Invoice_payments/edit', $this->data); 
             }
         }
@@ -129,7 +133,8 @@ class Invoice_payments extends Admin_Controller
         // check if the stage exists before trying to delete it
         if(isset($inv['id']))
         {
-            $this->Invoice_payments_model->delete_invoice($id);
+            $this->Invoice_payments_model->delete_invoice_pay($id);
+            $this->Invoice_payments_model->delete_transaction($inv['inv_id']);
             redirect('Invoice_payments/index');
         }
     }

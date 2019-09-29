@@ -165,6 +165,12 @@
 								<input type="text" name="tax_amt" value="<?php echo ($this->input->post('tax_amt') ? $this->input->post('tax_amt') : $bills['tax_amt']); ?>" class="form-control" id="tax_amt" disabled/>
 							</div>
                         </div>
+						<div class="col-md-6">
+							<label for="percentage" class="form-label"><span class="text-danger">*</span>Total Amount</label>
+							<div class="form-group">
+								<input type="text" name="total_amt" value="<?php echo ($this->input->post('total_amt') ? $this->input->post('total_amt') : $bills['total_amt']); ?>" class="form-control" id="total_amt" disabled/>
+							</div>
+                        </div>
                         <div class="col-md-6">
 							<label for="percentage" class="form-label"><span class="text-danger">*</span>Remarks</label>
 							<div class="form-group">

@@ -19,7 +19,7 @@
 					{
 						if($amount->id == $_POST['bill_id'])
 						{
-							$GLOBALS['amount'] = $amount->total_amount;
+							$GLOBALS['amount'] = $amount->total_amt;
 						}
 					}
 				}
@@ -35,10 +35,10 @@
 				<div class="col-md-6">
 				<label  class="form-label"><span class="text-danger">*</span>Bill_Id</label>
 				<div class='form-group'>
-				<select class="form-control" name="Bill_id" onchange="this.form.submit();">
+				<select class="form-control" name="bill_id" onchange="this.form.submit();">
 							<option value=''>select name</option>
 							<?php foreach($bill_ids as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['bill_id']) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
+  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['bill_id']) ? 'selected="selected"' : "" ?>><?php echo $row->bill_num?></option>
 							<?php }?>
 						</select>
 						<span class="text-danger"><?php echo form_error('bill_id');?></span>
