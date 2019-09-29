@@ -34,7 +34,7 @@
 				<select class="form-control" name="bills_id" onchange="this.form.submit();">
 							<option value=''>select name</option>
 							<?php foreach($bill_ids as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['bills_id']) ? 'selected="selected"' : "" ?>><?php echo $row->bill_num?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $GLOBALS['bills_id']) || ($this->input->post('bills_id') == $GLOBALS['bills_id'])) ? 'selected="selected"' : "" ?>><?php echo $row->bill_num?></option>
 							<?php }?>
 						</select>
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('bill_id');?></span>
@@ -56,7 +56,7 @@
 							<div class="form-group">
 							<select class="form-control" name="coa_id" >
 							        <?php foreach($coa_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							        <option value='<?php echo $row->id?>' <?php echo (($row->id == $bill['id']) || ($this->input->post('coa_id') == $bill['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>	
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('coa_id');?></span>
@@ -106,7 +106,7 @@
 							<div class="form-group">
 							<select class="form-control" name="payment_method" >
 							        <?php foreach($pay_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							        <option value='<?php echo $row->id?>' <?php echo (($row->id == $bill['id']) || ($this->input->post('payment_method') == $bill['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('payment_method');?></span>

@@ -34,7 +34,7 @@
 				<select class="form-control" name="invoice_id" onchange="this.form.submit();">
 							<option value=''>select name</option>
 							<?php foreach($inv_ids as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['invoice_id']) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $GLOBALS['invoice_id']) || ($this->input->post('invoice_id') == $GLOBALS['invoice_id'] )) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
 							<?php }?>
 						</select>
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('invoice_id');?></span>
@@ -56,7 +56,7 @@
 							<div class="form-group">
 							<select class="form-control" name="coa_id" >
 							        <?php foreach($coa_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $invoice['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							        <option value='<?php echo $row->id?>' <?php echo (($row->id == $invoice['id']) || ($this->input->post('coa_id') == $invoice['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>	
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('coa_id');?></span>
@@ -106,7 +106,7 @@
 							<div class="form-group">
 							<select class="form-control" name="pay_method" >
 							        <?php foreach($pay_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $invoice['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							        <option value='<?php echo $row->id?>' <?php echo (($row->id == $invoice['id']) || ($this->input->post('pay_method') == $invoice['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('pay_method');?></span>
