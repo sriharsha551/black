@@ -1,6 +1,6 @@
 <?php
 
-    class Exe_Remaining_Mtrl_Status extends Admin_Controller
+    class Exe_Remaining_Mtrl_Status extends Admin_Controller 
     {
         function __construct()
         {
@@ -49,7 +49,7 @@
             {   
                 $params = array(
                     'prj_id'=> $this->input->post('prj_id'),
-                    'mtrl_id'=> $this->input->post('mtrl_id'),
+                    'material_id'=> $this->input->post('mtrl_id'),
                     'qty_order'=> $this->input->post('qty_order'),
                     'order_date'=> $this->input->post('order_date'),
                     'qty_recived' => $this->input->post('qty_recived'),
@@ -63,6 +63,7 @@
             
             else
             {   
+                $_SESSION['error'] = true;
                 $this->template->public_render('Exe_Remaining_Mtrl_Status/add', $this->data);
             }
         }
