@@ -40,41 +40,47 @@ class Invoice_model extends CI_Model
     {
         $this->db->from('act_customer');
         $this->db->select('id,name,email,address,phone');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
     function get_credit()
     {
         $this->db->from('act_cr_days');
         $this->db->select('id,name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
     function get_tax()
     {
         $this->db->from('act_tax');
         $this->db->select('id,name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
     function get_invoice_items()
     {
         $this->db->from('act_inv_items');
         $this->db->select('id,item_name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
     function get_inv_status()
     {
         $this->db->from('act_inv_status');
         $this->db->select('id,name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
     function get_order()
     {
         $this->db->from('act_purchase_order');
         $this->db->select('id,ponumber');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
     function get_invoice($id)
     {
-        return $this->db->get_where('act_invoices',array('id'=>$id,"lock_st"=>null))->row_array();
+        return $this->db->get_where('act_invoices',array('id'=>$id,"deleted_at"=>null))->row_array();
     }
 
     function add_invoice($params)

@@ -71,6 +71,7 @@ class MaterialItems extends Admin_Controller{
             for($i=0;$i<$this->input->post('count');$i++){
             $params = array(
             'material_cat_id' => $this->input->post('category_id'),  
+            'prj_id' => $this->input->post('prj_id'),
             'material_name'  => $this->input->post('name'),  
             'price'   => $this->input->post('price['.$i.']'), 
             'dimensions'   => $this->input->post('dimensions'),  
@@ -122,6 +123,7 @@ class MaterialItems extends Admin_Controller{
                 $params = array(
             'material_cat_id' => $this->input->post('material_cat_id'),  
             'material_name'  => $this->input->post('name'),  
+            'prj_id' => $this->input->post('prj_id'),
             'price'   => $this->input->post('price'), 
             'dimensions'   => $this->input->post('dimensions'),  
             'supplier_id'   =>$this->input->post('supplier'),

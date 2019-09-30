@@ -106,7 +106,7 @@
 							<div class="form-group">
 							<select class="form-control" name="order_num"  >
 							<?php foreach($order_num as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['id']) || ($this->input->post('order_num') == $bills['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->ponumber?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['order_num']) || ($this->input->post('order_num') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->ponumber?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('order_num');?></span>
@@ -117,7 +117,7 @@
 							<div class="form-group">
 							<select class="form-control" name="bill_status"  >
 							<?php foreach($bill_status as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['id']) || ($this->input->post('bill_status') == $bills['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+								<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['bill_status']) || ($this->input->post('bill_status') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('bill_status');?></span>
@@ -135,7 +135,7 @@
 							<div class="form-group">
 							<select class="form-control" name="cr_days_id"  >
 							<?php foreach($credit as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['id']) || ($this->input->post('cr_days_id') == $bills['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['cr_days_id']) || ($this->input->post('cr_days_id') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('cr_days_id');?></span>
@@ -167,7 +167,7 @@
 							<div class="form-group">
 							<select class="form-control" name="tax_id"  >
 							<?php foreach($tax as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['id']) || ($this->input->post('tax_id') == $bills['id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+								<option value='<?php echo $row->id?>' <?php echo (($row->id == $bills['tax_id']) || ($this->input->post('tax_id') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('tax_id');?></span>
@@ -188,7 +188,7 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Remarks</label>
+							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $bills['remarks']); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('remarks');?></span>

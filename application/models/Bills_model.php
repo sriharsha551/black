@@ -30,6 +30,7 @@ class Bills_model extends CI_Model
     {
         $this->db->from('suppliers');
         $this->db->select('id,name,email_id,address,contact_no_1');
+        $this->db->where("delete_status",'0');
         return $this->db->get()->result();
     }
 
@@ -37,6 +38,7 @@ class Bills_model extends CI_Model
     {
         $this->db->from('act_cr_days');
         $this->db->select('id,name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -44,6 +46,7 @@ class Bills_model extends CI_Model
     {
         $this->db->from('act_tax');
         $this->db->select('id,name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -51,6 +54,7 @@ class Bills_model extends CI_Model
     {
         $this->db->from('act_bill_items');
         $this->db->select('id,item_name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -58,6 +62,7 @@ class Bills_model extends CI_Model
     {
         $this->db->from('act_bill_status');
         $this->db->select('id,name');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -74,6 +79,7 @@ class Bills_model extends CI_Model
     {
         $this->db->from('act_purchase_order');
         $this->db->select('id,ponumber');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 

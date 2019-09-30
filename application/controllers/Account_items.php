@@ -49,7 +49,6 @@ class Account_items extends Admin_Controller{
 
         $this->form_validation->set_rules('name','Name','required|max_length[255]');
         $this->form_validation->set_rules('price','price','required|max_length[11]');
-		$this->form_validation->set_rules('quantity','quantity','required|max_length[255]');
 		if($this->form_validation->run())     
         {   
             $params = array(

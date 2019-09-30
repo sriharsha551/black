@@ -67,7 +67,7 @@
 									<select name="prj_id" class="form-control" id="prj_id"  required>
                                 		<option value="">Select Project</option>
                                 		<?php foreach ($prj_list as $prj) { ?>
-                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($bills['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($invoices['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
                                 		<?php } ?>
                            			</select> 
 		 						</div>
@@ -105,7 +105,7 @@
 							<div class="form-group">
 							<select class="form-control" name="order_num"  >
 							<?php foreach($order_num as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $invoices['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->ponumber?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($this->input->post('order_num') == $row->id) || $row->id == $invoices['order_num']) ? 'selected="selected"' : "" ?> ><?php echo $row->ponumber?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('order_num');?></span>
@@ -116,7 +116,7 @@
 							<div class="form-group">
 							<select class="form-control" name="invoice_status"  >
 							<?php foreach($invoice_status as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $invoices['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+								<option value='<?php echo $row->id?>' <?php echo (($row->id == $invoices['invoice_status']) || ($this->input->post('invoice_status') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('invoice_status');?></span>
@@ -133,8 +133,8 @@
 							<label for="percentage" class="form-label"><span class="text-danger">*</span>Credit Days id</label>
 							<div class="form-group">
 							<select class="form-control" name="cr_days_id"  >
-							<?php foreach($credit as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $invoices['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+							<?php foreach($credit as $row) { ?>
+  							<option value='<?php echo $row->id?>' <?php echo (($row->id == $invoices['cr_days_id']) || ($this->input->post('cr_days_id') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('cr_days_id');?></span>
@@ -146,7 +146,7 @@
 							<div class="form-group">
 							<select class="form-control" name="invoice_item" required >
 							<?php foreach($invoice_item as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $invoices['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->item_name?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($this->input->post('invoice_item') == $row->id) ||$row->id == $invoices['invoice_item']) ? 'selected="selected"' : "" ?> ><?php echo $row->item_name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('invoice_item');?></span>
@@ -172,7 +172,7 @@
 							<div class="form-group">
 							<select class="form-control" name="tax_id"  >
 							<?php foreach($tax as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $invoices['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+								<option value='<?php echo $row->id?>' <?php echo (($row->id == $invoices['tax_id']) || ($this->input->post('tax_id') == $row->id)) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('tax_id');?></span>

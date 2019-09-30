@@ -42,6 +42,7 @@ class Bill_payments_model extends CI_Model
     {
         $this->db->select('id,bill_num');
         $this->db->from('act_bills');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -49,6 +50,7 @@ class Bill_payments_model extends CI_Model
     {
         $this->db->select('id,name');
         $this->db->from('act_coa');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -56,6 +58,7 @@ class Bill_payments_model extends CI_Model
     {
         $this->db->select('id, trans_type as name');
         $this->db->from('act_trans_type');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -63,6 +66,7 @@ class Bill_payments_model extends CI_Model
     {
         $this->db->select('id,name ');
         $this->db->from('act_payment_method');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 

@@ -15,6 +15,7 @@
 				if(isset($_POST['bill_id']))
 				{
 					$GLOBALS['bill_id'] = $_POST['bill_id'];
+					$_SESSION['error'] = false;
 					foreach($amounts as $amount)
 					{
 						if($amount->id == $_POST['bill_id'])
@@ -61,7 +62,7 @@
 							<select class="form-control" name="coa_id">
 							<option value=''>select name</option>
 							<?php foreach($coa_ids as $row) {?>
-  							<option value='<?php echo $row->id?>'><?php echo $row->name?></option>
+  							<option value='<?php echo $row->id?>'  <?php echo (($this->input->post('coa_id') == $row->id)) ? 'selected="selected"' : ""; ?>><?php echo $row->name?></option>
 							<?php }?>
 						    </select>		
 							<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('coa_id');?></span>
@@ -100,7 +101,7 @@
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Description</label>
+							<label for="percentage" class="form-label"><span class="text-danger"></span>Description</label>
 							<div class="form-group">
 								<input type="text" name="description" value="<?php echo $this->input->post('description'); ?>" class="form-control" id="description" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('description');?></span>
@@ -119,7 +120,7 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Remarks</label>
+							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo $this->input->post('remarks'); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('remarks');?></span>

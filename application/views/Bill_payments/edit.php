@@ -6,20 +6,19 @@
 	<span class="text-muted font-weight-light"><?php echo $pagetitle; ?></span>
 	<?php echo $breadcrumb;?>
 	<?php 
-				$GLOBALS['amount'] = null;
-				$GLOBALS['bills_id'] = null;
+				$GLOBALS['bills_id'] = $bill['id'];
 				if(isset($_POST['bills_id']))
 				{
 					$GLOBALS['bills_id'] = $_POST['bills_id'];
-					foreach($amounts as $amount)
+					$_SESSION['error'] = false;
+				}
+				foreach($amounts as $amount)
 					{
-						if($amount->id == $_POST['bills_id'])
+						if($amount->id == $GLOBALS['bills_id'])
 						{
 							$GLOBALS['amount'] = $amount->total_amt;
-							$_SESSION['error'] = false;
 						}
 					}
-				}
 	?>
 </h4>
 <div class="card mb-4">
@@ -91,7 +90,7 @@
 							<label  class="form-label"><span class="text-danger">*</span>Amount Paid</label>
 							<div class="form-group">
 								<input type="text" name="amount_paid" value="<?php echo ($this->input->post('amount_paid') ? $this->input->post('amount_paid') : $bill['amount_paid']); ?>" class="form-control" id="amount_paid" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount');?></span>
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount_paid');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">

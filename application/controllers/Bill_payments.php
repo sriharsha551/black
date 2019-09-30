@@ -71,7 +71,7 @@ class Bill_payments extends Admin_Controller
         }
         else
         {
-            $_SESSION['edit_error'] = true;
+            $_SESSION['error'] = true;
             $this->template->public_render('Bill_payments/add', $this->data);      
         }
     }
@@ -95,6 +95,7 @@ class Bill_payments extends Admin_Controller
             $this->form_validation->set_rules('coa_id','Coa id','required');
             $this->form_validation->set_rules('paid_dt','Paid Date','required');
             $this->form_validation->set_rules('amount','Amount','required');
+            $this->form_validation->set_rules('amount_paid','Amount Paid','required');
             // $this->form_validation->set_rules('description','Description','required');
             $this->form_validation->set_rules('payment_method','Payment Method','required');
             // $this->form_validation->set_rules('remarks','Remarks','required');
@@ -120,7 +121,7 @@ class Bill_payments extends Admin_Controller
             }
             else
             {
-                $_SESSION['edit_error'] = true;
+                $_SESSION['error'] = true;
                 $this->template->public_render('Bill_payments/edit', $this->data); 
             }
         }
@@ -135,7 +136,7 @@ class Bill_payments extends Admin_Controller
         if(isset($bill['id']))
         {
             $this->Bill_payments_model->delete_bill_pay($id);
-            $this->Bill_payments_model->delete_transaction($inv['bill_id']);
+            $this->delete_transaction($inv['bill_id']);
 
             redirect('Bill_payments/index');
         }
