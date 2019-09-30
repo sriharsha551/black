@@ -10,7 +10,7 @@ class MaterialItems_model extends CI_Model
     {
         parent::__construct();
     }
-    
+   
     /*
      * Get MaterialItems by id
      */
@@ -55,11 +55,11 @@ class MaterialItems_model extends CI_Model
             $this->db->limit($params['limit'], $params['offset']);
         }
         $this->db->where('t1.delete_status', '0');
-        $this->db->select('t1.*, t2.material_category,e.name');    
+        $this->db->select('t1.*, t2.material_category,e.name,p.name as prj_name');    
         $this->db->from('prj_mtrl_items as t1');
         $this->db->join('prj_mtrl_category as t2', 't1.material_cat_id = t2.id');
         $this->db->join('suppliers as e','t1.supplier_id = e.id');
-
+        $this->db->join('prj_list as p','t1.prj_id=p.id');
         return $this->db->get()->result_array();
     }
         
@@ -86,7 +86,15 @@ class MaterialItems_model extends CI_Model
         $this->db->where('delete_status','0');
         $query1 = $this->db->get();
 		return $query1->result_array();
-	  }  
+      }  
+      public function selectProject()  
+      {  
+		$this->db->select("id,name");
+        $this->db->from('prj_list'); 
+        $this->db->where('delete_status','0');
+        $query1 = $this->db->get();
+		return $query1->result_array();
+	  }
     
     /*
      * function to update MaterialItems

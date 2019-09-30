@@ -10,7 +10,7 @@ class Invoice_model extends CI_Model
     function get_all_invoice_count()
     {
         $this->db->from('act_invoices');
-        $this->db->where(array('delete_status'=>'0'));
+        $this->db->where(array('deleted_at'=>null));
         return $this->db->count_all_results();
     }
     
@@ -24,7 +24,7 @@ class Invoice_model extends CI_Model
         $this->db->join('act_tax as t6', 't6.id = t1.tax_id', 'inner');
         $this->db->join('act_inv_items as t7','t1.invoice_item = t7.id','inner');
         $this->db->join('prj_list as t8', 't1.prj_id = t8.id','inner');
-        return $this->db->get_where('act_invoices t1',array('t1.delete_status'=>'0'))->result_array();
+        return $this->db->get_where('act_invoices t1',array('t1.deleted_at'=>null))->result_array();
     }
 
     function get_all_prj_list()
@@ -74,7 +74,7 @@ class Invoice_model extends CI_Model
     }
     function get_invoice($id)
     {
-        return $this->db->get_where('act_invoices',array('id'=>$id,"lock_st"=>'0'))->row_array();
+        return $this->db->get_where('act_invoices',array('id'=>$id,"lock_st"=>null))->row_array();
     }
 
     function add_invoice($params)
@@ -93,15 +93,14 @@ class Invoice_model extends CI_Model
     }
     function get_invoice_detail($id)
     {
-        return $this->db->get_where('act_invoices',array('id'=>$id,"delete_status"=>'0'))->row_array();
+        return $this->db->get_where('act_invoices',array('id'=>$id,"deleted_at"=>null))->row_array();
     }
 
     function delete($id)
     {
         $params['deleted_at'] = date("Y-m-d H:i:s");
-        $this->db->set(array('delete_status'=>'1'));
         $this->db->where('id',$id);
-        return $this->db->update('act_invoices');
+        return $this->db->update('act_invoices',$params);
 
     }
 }

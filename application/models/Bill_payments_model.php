@@ -10,7 +10,7 @@ class Bill_payments_model extends CI_Model
     function get_all_bill_pay_count()
     {
         $this->db->from('act_bill_payment');
-        $this->db->where(array('delete_status'=>'0'));
+        $this->db->where(array('deleted_at'=>null));
         return $this->db->count_all_results();
     }
     
@@ -22,19 +22,19 @@ class Bill_payments_model extends CI_Model
         $this->db->join('prj_list as t4', 't1.prj_id = t4.id','inner');
         // $this->db->join('act_trans_type as t4', 't1.tran_type_id = t4.id', 'inner');
         $this->db->join('act_bills as t5', 't5.id = t1.bill_id', 'inner');
-        return $this->db->get_where('act_bill_payment t1',array('t1.delete_status'=>'0'))->result_array();
+        return $this->db->get_where('act_bill_payment t1',array('t1.deleted_at'=>null))->result_array();
     }
 
     function get_bill_pay($id)
     {
-        return $this->db->get_where('act_bill_payment',array('id'=>$id,"delete_status"=>'0'))->row_array();
+        return $this->db->get_where('act_bill_payment',array('id'=>$id,"deleted_at"=>null))->row_array();
     }
 
     function get_bill_amount()
     {
         $this->db->select('id,total_amt');
         $this->db->from('act_bills');
-        $this->db->where("delete_status",'0');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -91,7 +91,6 @@ class Bill_payments_model extends CI_Model
             'bill_id' => $params['bill_id'],
             'db_amt' => $params['amount'],
             'remarks' => $params['remarks'],
-
             'created_at' => date("Y-m-d H:i:s")
     );
         
@@ -117,18 +116,16 @@ class Bill_payments_model extends CI_Model
     function delete_bill_pay($id)
     {
         $params['deleted_at'] = date("Y-m-d H:i:s");
-        $this->db->set(array('delete_status'=>'1'));
         $this->db->where('id',$id);
-        return $this->db->update('act_bill_payment');
+        return $this->db->update('act_bill_payment',$params);
 
     }
 
     function delete_transaction($id)
     {
         $params['deleted_at'] = date("Y-m-d H:i:s");
-        $this->db->set(array('delete_status'=>'1'));
         $this->db->where('bill_id',$id);
-        return $this->db->update('act_transaction');    
+        return $this->db->update('act_transaction',$params);    
     }
 }
 ?>

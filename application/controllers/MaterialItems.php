@@ -38,8 +38,7 @@ class MaterialItems extends Admin_Controller{
          }
         
         $this->template->public_render('MaterialItems/index', $this->data);
-
-   
+ 
     }
 
     /*
@@ -56,6 +55,11 @@ class MaterialItems extends Admin_Controller{
          $this->data['MATERIALS'] = null;
          if($query){
           $this->data['MATERIALS'] =  $query;
+         }
+         $query2 = $this->MaterialItems_model->selectProject(); 
+         $this->data['Projects'] = null;
+         if($query2){
+          $this->data['Projects'] =  $query2;
          }
          $query1 = $this->MaterialItems_model->selectSupplier(); 
          $this->data['SUPPLIER'] = null;

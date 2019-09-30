@@ -12,15 +12,13 @@
 			<?php
 				
 				$GLOBALS['prj_filter_id'] = null;
-				
 				$GLOBALS['name'] = null;
 				$GLOBALS['dimensions'] = null;
 				$GLOBALS['qty']= null;
                 if(isset($_POST['count']))
                 {
 					
-                    $GLOBALS['prj_filter_id'] = $_POST['count'];
-					
+                    $GLOBALS['prj_filter_id'] = $_POST['count'];	
 					$GLOBALS['name'] = $_POST['name'];
 					$GLOBALS['dimensions'] = $_POST['dimensions'];
 					$GLOBALS['qty'] = $_POST['qty'];
@@ -36,6 +34,16 @@
             		<?php echo form_open('MaterialItems/add'); ?>
 					
 					<div class="row clearfix">
+					<div class="col-md-6">
+						<label class="form-label">Project</label>
+						<span class="text-danger">*</span>
+						<select class="custom-select" name="prj_id" required>
+						<option value="">Select Project</option>
+						<?php foreach($Projects as $project){?>
+                			<option value="<?= $project['id'];?>"><?=$project['name'];?></option>    
+        				<?php }?>
+						</select>
+						</div>
 						<div class="col-md-6">
 						<label class="form-label">Material Category</label>
 						<span class="text-danger">*</span>

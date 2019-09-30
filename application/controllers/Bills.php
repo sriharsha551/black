@@ -61,7 +61,6 @@ class Bills extends Admin_Controller
 
         if ($this->form_validation->run()) {
             $params = $this->input->post();
-            print_r($params);
             $concept_id = $this->Bills_model->add_bill($params);
             redirect('Bills/index');
         } else {

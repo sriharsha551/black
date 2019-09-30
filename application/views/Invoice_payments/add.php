@@ -39,7 +39,7 @@
 				<select class="form-control" name="invoice_id" onchange="this.form.submit();">
 							<option value=''>select name</option>
 							<?php foreach($inv_ids as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['invoice_id']) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
+  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['invoice_id'] || $this->input->post('inv_id') == $row->id) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
 							<?php }?>
 						</select>
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('invoice_id');?></span>
@@ -59,10 +59,10 @@
                         <div class="col-md-6">
 							<label for="name" class="form-label"><span class="text-danger">*</span>Coa Id</label>
 							<div class="form-group">
-							<select class="form-control" name="coa_id">
+							<select class="form-control" name="coa_id" required>
 							<option value=''>select name</option>
 							<?php foreach($coa_ids as $row) {?>
-  							<option value='<?php echo $row->id?>'><?php echo $row->name?></option>
+  							<option value='<?php echo $row->id?>' <?php echo $this->input->post('coa_id') == $row->id ? 'selected="selected"' : ""; ?>><?php echo $row->name?></option>
 							<?php }?>
 						</select>		
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('coa_id');?></span>

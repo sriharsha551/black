@@ -87,6 +87,7 @@ class Bill_payments extends Admin_Controller
         $this->data['tran_ids'] = $this->Bill_payments_model->get_tran_ids();
         $this->data['pay_ids'] = $this->Bill_payments_model->get_pay_ids();
         $this->data['amounts'] = $this->Bill_payments_model->get_bill_amount();
+        $this->data['prj_list'] = $this->Bill_payments_model->get_all_prj_list();
 
         if(isset($this->data['bill']['id']))
         {

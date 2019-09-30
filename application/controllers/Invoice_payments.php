@@ -38,6 +38,7 @@ class Invoice_payments extends Admin_Controller
         $this->data['pay_ids'] = $this->Invoice_payments_model->get_pay_ids();
         $this->data['amounts'] = $this->Invoice_payments_model->get_inv_amount();
         $this->data['prj_list'] = $this->Invoice_payments_model->get_all_prj_list();
+
         $this->load->library('form_validation');
         $this->form_validation->set_rules('inv_id','Invoice Id','required');
         $this->form_validation->set_rules('coa_id','Coa id','required');
@@ -50,9 +51,9 @@ class Invoice_payments extends Admin_Controller
         // $this->form_validation->set_rules('tran_type_id','Transactin type','required');
 
         if($this->form_validation->run())     
-        {   
+        {
             $params = $this->input->post();
-            echo $params['pay_method'];
+            echo $params['prj_id'];
             if($params['amount_recieved'] < $params['amount'] && $params['amount_recieved'] != 0 )
             {
                 $status = 2;
@@ -71,7 +72,7 @@ class Invoice_payments extends Admin_Controller
         }
         else
         {
-            $_SESSION['edit_error'] = true;
+            $_SESSION['error'] = true;
             $this->template->public_render('Invoice_payments/add', $this->data);      
         }
     }
@@ -120,7 +121,7 @@ class Invoice_payments extends Admin_Controller
             }
             else
             {
-                $_SESSION['edit_error'] = true;
+                $_SESSION['error'] = true;
                 $this->template->public_render('Invoice_payments/edit', $this->data); 
             }
         }
