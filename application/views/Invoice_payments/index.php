@@ -20,13 +20,14 @@
                             <th>ID</th>
                             <th>Invoice Num</th>
                             <!-- <th>Coa Id</th> -->
+                            <th>Project</th>
                             <th>Paid Date</th>
                             <th>Amount</th>
                             <th>Amount Recieved </th>
                             <th>Description</th>
                             <th>Pay Method</th>
                             <th>Remarks</th>
-                            <th>Transaction Type</th>
+                            <!-- <th>Transaction Type</th> -->
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -36,13 +37,14 @@
                             <td><?php echo $index++; ?></td>
                             <td><?php echo $invoice['inv_id']; ?></td>
                             <!-- <td><?php echo $invoice['coa_id']; ?></td> -->
+                            <td><?php echo $invoice['prj_name']; ?></td>
                             <td><?php echo $invoice['paid_dt']; ?></td>
                             <td><?php echo $invoice['amount']; ?></td>
                             <td><?php echo $invoice['amount_recieved']; ?></td>
                             <td><?php echo $invoice['description']; ?></td>
                             <td><?php echo $invoice['pay_method']; ?></td>
                             <td><?php echo $invoice['remarks']; ?></td>
-                            <td><?php echo $invoice['tran_type_id']; ?></td>
+                            <!-- <td><?php echo $invoice['tran_type_id']; ?></td> -->
                             <td>
                                 <a href="<?php echo site_url('Invoice_payments/edit/' . $invoice['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>
                                 <a href="<?php echo site_url('Invoice_payments/remove/' . $invoice['id']); ?>" class="btn btn-danger btn-xs mr-1"><span class="fa fa-trash"></span></a>

@@ -21,6 +21,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Project</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th>
@@ -43,6 +44,7 @@
                         <tr>
                             <td><?php echo $index++; ?></td>
                             <td><?php echo $d['name']; ?></td>
+                            <td><?php echo $d['prj_name']; ?></td>
                             <td><?php echo $d['email']; ?></td>
                             <td><?php echo $d['phone']; ?></td>
                             <td><?php echo $d['address']; ?></td>

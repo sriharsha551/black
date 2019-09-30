@@ -26,14 +26,19 @@ class Transaction extends Admin_Controller
   function add()
   {   
       $this->data['coa_list'] = $this->Transaction_model->get_all_coa_list();
+      $this->data['inv_list'] = $this->Transaction_model->get_all_inv_list();
+      $this->data['bill_list'] = $this->Transaction_model->get_all_bill_list();
+      $this->data['prj_list'] = $this->Transaction_model->get_all_prj_list();
       $this->breadcrumbs->unshift(2, 'Add', 'add');
       $this->data['breadcrumb'] = $this->breadcrumbs->show();
       $this->load->library('form_validation');
       $this->form_validation->set_rules('date_transaction','Date of transaction','required');
       $this->form_validation->set_rules('coa_id','Chart of Accounts name','required');
+      $this->form_validation->set_rules('invoice_id','Invoice name','required');
+      $this->form_validation->set_rules('bill_id',' Bill name','required');
       $this->form_validation->set_rules('purpose','purpose','required');
       $this->form_validation->set_rules('payment_amt','Payment amount','required');
-      $this->form_validation->set_rules('remarks','remarks','required');
+    //   $this->form_validation->set_rules('remarks','remarks','required');
   
       if($this->form_validation->run())     
       {   
@@ -54,12 +59,18 @@ class Transaction extends Admin_Controller
     $this->breadcrumbs->unshift(2, 'Edit', 'edit'); 
     $this->data['breadcrumb'] = $this->breadcrumbs->show();
     $this->data['tran_list'] = $this->Transaction_model->get_transactions($id);
-    $this->data['coa_list'] = $this->Transaction_model->get_all_coa_list($id);
+    $this->data['coa_list'] = $this->Transaction_model->get_all_coa_list();
+    $this->data['inv_list'] = $this->Transaction_model->get_all_inv_list();
+    $this->data['bill_list'] = $this->Transaction_model->get_all_bill_list();
+    $this->data['prj_list'] = $this->Transaction_model->get_all_prj_list();
+    // print_r($this->data['tran_list']);
+    // print_r($this->data['coa_list']);    
     if(isset($this->data['tran_list']['id']))
           {
             $this->load->library('form_validation');
             $this->form_validation->set_rules('date_transaction','Date of transaction','required');
             $this->form_validation->set_rules('coa_id','coa_id','required');
+            $this->form_validation->set_rules('prj_id','prj_id','required');
             $this->form_validation->set_rules('purpose','purpose','required');
             $this->form_validation->set_rules('payment_amt','Payment amount','required');
             $this->form_validation->set_rules('remarks','remarks','required');

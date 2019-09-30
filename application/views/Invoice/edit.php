@@ -61,6 +61,17 @@
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('customer_name');?></span>
 							</div>
 						</div>
+						<div class="col-md-6">
+                        	<label for="prj_id" class="col-md-6"><span class="text-danger">*</span>Project</label>
+								<div class="form-group">
+									<select name="prj_id" class="form-control" id="prj_id"  required>
+                                		<option value="">Select Project</option>
+                                		<?php foreach ($prj_list as $prj) { ?>
+                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($bills['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+                                		<?php } ?>
+                           			</select> 
+		 						</div>
+						</div>
                         <div class="col-md-6">
 							<label for="attach_link" class="form-label"><span class="text-danger">*</span>Customer Email</label>
 							<div class="form-group">
@@ -182,7 +193,7 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Remarks</label>
+							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $invoices['remarks']); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('remarks');?></span>

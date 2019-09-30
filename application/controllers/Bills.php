@@ -38,6 +38,7 @@ class Bills extends Admin_Controller
         $this->data['bill_item'] = $this->Bills_model->get_bill_items();
         $this->data['bill_status'] = $this->Bills_model->get_bill_status();
         $this->data['order_num'] = $this->Bills_model->get_order();
+        $this->data['prj_list'] = $this->Bills_model->get_all_prj_list();
 
         $this->load->library('form_validation');
 
@@ -60,7 +61,6 @@ class Bills extends Admin_Controller
 
         if ($this->form_validation->run()) {
             $params = $this->input->post();
-            print_r($params);
             $concept_id = $this->Bills_model->add_bill($params);
             redirect('Bills/index');
         } else {
@@ -81,6 +81,7 @@ class Bills extends Admin_Controller
         $this->data['bill_item'] = $this->Bills_model->get_bill_items();
         $this->data['bill_status'] = $this->Bills_model->get_bill_status();
         $this->data['order_num'] = $this->Bills_model->get_order();
+        $this->data['prj_list'] = $this->Bills_model->get_all_prj_list();
 
         if (isset($this->data['bills']['id'])) {
             $this->form_validation->set_rules('sup_id', 'Supplier Id', 'required');

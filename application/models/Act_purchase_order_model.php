@@ -16,9 +16,10 @@
         function get_all_purchases()
         {
             $this->db->where('p.deleted_at',NULL);
-            $this->db->select('p.id,p.ponumber,p.sup_id,p.sup_name,p.sup_email,p.sup_phone,p.sup_address,i.material_name,p.description,p.amount,p.remarks');
+            $this->db->select('p.id,p.ponumber,p.sup_id,p.sup_name,p.sup_email,p.sup_phone,p.sup_address,i.material_name,p.description,p.amount,p.remarks, t3.name as prj_name');
             $this->db->from('act_purchase_order as p');
             $this->db->join('prj_mtrl_items as i','i.id = p.items','inner');
+            $this->db->join('prj_list as t3', 'p.prj_id = t3.id','inner');
             return $this->db->get()->result_array();
         }
 
@@ -42,6 +43,15 @@
             $this->db->where('deleted_at',NULL);
             $this->db->where('id',$id);
             return $this->db->get('act_purchase_order')->result_array();
+        }
+
+        function get_all_prj_list()
+        {
+            $this->db->where('delete_status','0');
+            $this->db->select('id, name');
+            $this->db->from('prj_list');
+            $query = $this->db->get();
+            return $query->result_array();
         }
 
         function add_purchase($params)

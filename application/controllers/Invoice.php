@@ -38,6 +38,7 @@ class Invoice extends Admin_Controller
         $this->data['invoice_item'] = $this->Invoice_model->get_Invoice_items();
         $this->data['inv_status'] = $this->Invoice_model->get_inv_status();
         $this->data['order_num'] = $this->Invoice_model->get_order();
+        $this->data['prj_list'] = $this->Invoice_model->get_all_prj_list();
         $this->load->library('form_validation');
 
    
@@ -82,6 +83,7 @@ class Invoice extends Admin_Controller
         $this->data['invoice_item'] = $this->Invoice_model->get_invoice_items();
         $this->data['invoice_status'] = $this->Invoice_model->get_inv_status();
         $this->data['order_num'] = $this->Invoice_model->get_order();
+        $this->data['prj_list'] = $this->Invoice_model->get_all_prj_list();
         $this->load->library('form_validation');
 
         if (isset($this->data['invoices']['id'])) {
@@ -119,6 +121,8 @@ class Invoice extends Admin_Controller
     {
         $this->breadcrumbs->unshift(2, 'Invoice', 'invoice_view');
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
+        $this->data['prj_list'] = $this->Invoice_model->get_all_prj_list();
+
 
         $this->data['invoices'] = $this->Invoice_model->get_invoice($id);
         $this->data['Customers'] = $this->Invoice_model->get_cut();

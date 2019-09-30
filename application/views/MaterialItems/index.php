@@ -47,6 +47,7 @@
                         <?$_POST['category_id']==''?>
                         <tr>
                             <th>ID</th>
+                            <th>Project</th>
                             <th>Material Category</th>
                             <th>Material Name</th>
                             <th>Price</th>
@@ -61,6 +62,7 @@
                             if($d['material_cat_id'] == $GLOBALS['category_id']){?>
                         <tr>
                             <td><?php echo $d['id']; ?></td>
+                            <td><?php echo $d['prj_name'];?></td>
                             <td><?php echo $d['material_category']; ?></td>
                             <td><?php echo $d['material_name']; ?></td>
                             <td><?php echo $d['price']; ?></td>

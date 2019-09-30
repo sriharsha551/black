@@ -18,9 +18,10 @@
                             <th>Date Of Transaction</th>
                             <th>Chart OF Accounts </th>
                             <th>Purpose</th>
+                            <th>Project</th>
                             <th>Credit Amount</th>
                             <th>Debit Amount</th>
-                            <th>Payment Amount</th>
+                            <th>Available Amount</th>
                             <th>Remarks</th>
                             <th>Action</th>
                            
@@ -32,9 +33,10 @@
                             <td><?php echo $d['date_transaction']; ?></td>
                             <td><?php echo $d['coa_name']; ?></td>
                             <td><?php echo $d['purpose']; ?></td>
+                            <td><?php echo $d['prj_name']; ?></td>
                             <td><?php echo $d['cr_amt']; ?></td>
                             <td><?php echo $d['db_amt']; ?></td>
-                            <td><?php echo $d['payment_amt']; ?></td>
+                            <td><?php echo $d['available_amt']; ?></td>
                             <td><?php echo $d['remarks']; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('Transaction/edit/' .$d['id']); ?>" class="btn btn-info btn-xs mr-1"><span class="fa fa-edit"></span></a>

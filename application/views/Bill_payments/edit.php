@@ -34,7 +34,7 @@
 				<select class="form-control" name="bills_id" onchange="this.form.submit();">
 							<option value=''>select name</option>
 							<?php foreach($bill_ids as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['bills_id']) ? 'selected="selected"' : "" ?>><?php echo $row->bill_num?></option>
+  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['bills_id'] || $bill['id'] == $row->id || $this->input->post('bill_id')== $row->id) ? 'selected="selected"' : "" ?>><?php echo $row->bill_num?></option>
 							<?php }?>
 						</select>
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('bill_id');?></span>
@@ -56,11 +56,22 @@
 							<div class="form-group">
 							<select class="form-control" name="coa_id" >
 							        <?php foreach($coa_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['coa_id'] || $this->input->post('coa_id') == $row->id) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>	
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('coa_id');?></span>
 							</div>
+						</div>
+						<div class="col-md-6">
+                        	<label for="prj_id" class="col-md-6"><span class="text-danger">*</span>Project</label>
+								<div class="form-group">
+									<select name="prj_id" class="form-control" id="prj_id"  required>
+                                		<option value="">Select Project</option>
+                                		<?php foreach ($prj_list as $prj) { ?>
+                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($bill['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+                                		<?php } ?>
+                           			</select> 
+		 						</div>
 						</div>
                         <div class="col-md-6">
 							<label for="attach_link" class="form-label"><span class="text-danger">*</span>Paid Date</label>
@@ -84,7 +95,7 @@
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label  class="form-label"><span class="text-danger">*</span>Description</label>
+							<label  class="form-label"><span class="text-danger"></span>Description</label>
 							<div class="form-group">
 								<input type="text" name="description" value="<?php echo ($this->input->post('description') ? $this->input->post('description') : $bill['description']); ?>" class="form-control" id="description" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('description');?></span>
@@ -95,14 +106,14 @@
 							<div class="form-group">
 							<select class="form-control" name="payment_method" >
 							        <?php foreach($pay_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['id']) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['payment_method'] || $this->input->post('payment_method') == $row->id ) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('payment_method');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label  class="form-label"><span class="text-danger">*</span>Remarks</label>
+							<label  class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $bill['remarks']); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('remarks');?></span>

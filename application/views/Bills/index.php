@@ -25,6 +25,7 @@
                             <th>Supplier Address</th> -->
                             <th>Bill Number</th>
                             <th>Order Number</th>
+                            <th>Project</th>
                             <th>Bill Status</th>
                             <th>Bill Date</th>
                             <th>Credit days</th>
@@ -49,6 +50,7 @@
                             <td><?php echo $bills['sup_address']; ?></td> -->
                             <td><a href="<?php echo site_url('Bills/bills_view/'.$bills['id']);?>"><?php echo $bills['bill_num']; ?></a></td>
                             <td><?php echo $bills['order_name']; ?></td>
+                            <td><?php echo $bills['prj_name']; ?></td>
                             <td><?php echo $bills['bill_status']; ?></td>
                             <td><a href="<?php echo site_url('Bills/bills_view/'.$bills['id']);?>"><?php echo $bills['bill_date']; ?></a></td>
                             <td><?php echo $bills['cr_days']; ?></td>

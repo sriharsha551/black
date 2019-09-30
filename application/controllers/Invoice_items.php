@@ -5,10 +5,10 @@ class  Invoice_items extends Admin_Controller
     public function __construct() {
         parent :: __construct();
         $this->load->model('Invoice_items_model');
-        $this->page_title->push('Invoice Items');
+        $this->page_title->push('Invoice items');
         $this->data['pagetitle'] = $this->page_title->show();
           /* Breadcrumbs :: Common */
-          $this->breadcrumbs->unshift(1, 'Invoice Items', 'Invoice_items');
+          $this->breadcrumbs->unshift(1, 'invoice items', ' Invoice_items');
 
     }
     public function index()
@@ -42,7 +42,7 @@ class  Invoice_items extends Admin_Controller
         }
         else
         {  
-            $this->template->public_render('Invoice_items/add', $this->data);      
+            $this->template->public_render('invoice_items/add', $this->data);      
            
         }
     
@@ -80,10 +80,7 @@ class  Invoice_items extends Admin_Controller
 }
 public function delete($id) 
 {
-    $inv = $this->Invoice_items_model->get_invoice_item_detail($id);
-    if (isset($inv['id'])) {
     $this->Invoice_items_model->delete($id);
     redirect("Invoice_items/");
-    }
 }
 }

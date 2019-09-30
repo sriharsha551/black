@@ -10,38 +10,39 @@ class Invoice_payments_model extends CI_Model
     function get_all_invoice_count()
     {
         $this->db->from('act_inv_payment');
-        $this->db->where(array('delete_status'=>'0'));
+        $this->db->where(array('deleted_at'=>null));
         return $this->db->count_all_results();
     }
     
     function get_all_invoice()
     {
-        $this->db->select('t1.*,t2.name as coa_id,t3.name as pay_method,t5.invoice_num as inv_id');
+        $this->db->select('t1.*,t2.name as coa_id,t3.name as pay_method,t5.invoice_num as inv_id, t6.name as prj_name');
         $this->db->join('act_coa as t2', 't2.id = t1.coa_id', 'inner');
         $this->db->join('act_payment_method as t3','t1.pay_method = t3.id','inner');
         // $this->db->join('act_trans_type as t4', 't1.tran_type_id = t4.id', 'inner');
         $this->db->join('act_invoices as t5', 't5.id = t1.inv_id', 'inner');
-        return $this->db->get_where('act_inv_payment t1',array('t1.delete_status'=>'0'))->result_array();
+        $this->db->join('prj_list as t6', 't1.prj_id = t6.id','inner');
+        return $this->db->get_where('act_inv_payment t1',array('t1.deleted_at'=>null))->result_array();
     }
 
     function get_inv_amount()
     {
         $this->db->select('id,total_amount');
         $this->db->from('act_invoices');
-        $this->db->where("delete_status",'0');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
     function get_invoice($id)
     {
-        return $this->db->get_where('act_inv_payment',array('id'=>$id,"delete_status"=>'0'))->row_array();
+        return $this->db->get_where('act_inv_payment',array('id'=>$id,"deleted_at"=>null))->row_array();
     }
 
     function get_inv_ids()
     {
         $this->db->select('id,invoice_num');
         $this->db->from('act_invoices');
-        $this->db->where("delete_status",'0');
+        $this->db->where("deleted_at",null);
         return $this->db->get()->result();
     }
 
@@ -51,6 +52,15 @@ class Invoice_payments_model extends CI_Model
         $this->db->from('act_coa');
         $this->db->where("deleted_at",null);
         return $this->db->get()->result();
+    }
+
+    function get_all_prj_list()
+    {
+        $this->db->where('delete_status','0');
+        $this->db->select('id, name');
+        $this->db->from('prj_list');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
     function get_tran_ids()
@@ -80,6 +90,7 @@ class Invoice_payments_model extends CI_Model
         $data = array(
             'date_transaction' => $params['paid_dt'],
             'coa_id' => $params['coa_id'],
+            'prj_id' => $params['prj_id'],
             'inv_id' => $params['inv_id'],
             'cr_amt' => $params['amount'],
             'remarks' => $params['remarks'],
@@ -108,18 +119,16 @@ class Invoice_payments_model extends CI_Model
     function delete_invoice_pay($id)
     {
         $params['deleted_at'] = date("Y-m-d H:i:s");
-        $this->db->set(array('delete_status'=>'1'));
         $this->db->where('id',$id);
-        return $this->db->update('act_inv_payment');
+        return $this->db->update('act_inv_payment',$params);
 
     }
 
     function delete_transaction($id)
     {
         $params['deleted_at'] = date("Y-m-d H:i:s");
-        $this->db->set(array('delete_status'=>'1'));
         $this->db->where('inv_id',$id);
-        return $this->db->update('act_transaction');    
+        return $this->db->update('act_transaction',$params);    
     }
 }
 ?>

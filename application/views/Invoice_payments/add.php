@@ -39,7 +39,7 @@
 				<select class="form-control" name="invoice_id" onchange="this.form.submit();">
 							<option value=''>select name</option>
 							<?php foreach($inv_ids as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['invoice_id']) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
+  							<option value='<?php echo $row->id?>' <?php echo ($row->id == $GLOBALS['invoice_id'] || $this->input->post('inv_id') == $row->id) ? 'selected="selected"' : "" ?>><?php echo $row->invoice_num?></option>
 							<?php }?>
 						</select>
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('invoice_id');?></span>
@@ -59,15 +59,26 @@
                         <div class="col-md-6">
 							<label for="name" class="form-label"><span class="text-danger">*</span>Coa Id</label>
 							<div class="form-group">
-							<select class="form-control" name="coa_id">
+							<select class="form-control" name="coa_id" required>
 							<option value=''>select name</option>
 							<?php foreach($coa_ids as $row) {?>
-  							<option value='<?php echo $row->id?>'><?php echo $row->name?></option>
+  							<option value='<?php echo $row->id?>' <?php echo $this->input->post('coa_id') == $row->id ? 'selected="selected"' : ""; ?>><?php echo $row->name?></option>
 							<?php }?>
 						</select>		
 						<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('coa_id');?></span>
 							</div>
 						</div>
+						<div class="col-md-6">
+                             <label for="prj_id" class="col-md-6"><span class="text-danger">*</span>Project</label>
+								 <div class="form-group">
+									 <select name="prj_id" class="form-control" id="prj_id"  required>
+										<option value="">Select Project</option>
+											<?php foreach ($prj_list as $prj) { ?>
+											<option value="<?php echo $prj['id']; ?>" <?php echo ($this->input->post('prj_id') == $prj['id']) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+											<?php } ?>
+									</select> 
+						</div>
+						 </div>
                         <div class="col-md-6">
 							<label for="attach_link" class="form-label"><span class="text-danger">*</span>Paid Date</label>
 							<div class="form-group">
@@ -90,7 +101,7 @@
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Description</label>
+							<label for="percentage" class="form-label"><span class="text-danger"></span>Description</label>
 							<div class="form-group">
 								<input type="text" name="description" value="<?php echo $this->input->post('description'); ?>" class="form-control" id="description" />
 								<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('description');?></span>
@@ -109,7 +120,7 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Remarks</label>
+							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo $this->input->post('remarks'); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('remarks');?></span>

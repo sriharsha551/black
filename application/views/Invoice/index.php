@@ -20,6 +20,7 @@
                             <!-- <th>ID</th>
                             <th>Customer Id</th> -->
                             <th>Invoice Number</th>
+                            <th>Project</th>
                             <th>Order Number</th>
                             <th>Invoice Date</th>
                             <th>Total Amount</th>
@@ -33,6 +34,7 @@
                         <?php foreach ($invoice as $invoice) { ?>
                         <tr>
                             <td><a href="<?php echo site_url('Invoice/invoice_view/'.$invoice['id']);?>"><?php echo $invoice['invoice_num']; ?></a></td>
+                            <td><?php echo $invoice['prj_name']; ?></td>
                             <td><?php echo $invoice['order_num']; ?></td>
                             <td><a href="<?php echo site_url('Invoice/invoice_view/'.$invoice['id']);?>"><?php echo $invoice['invoice_date']; ?></a> </td> 
                             <td><?php echo $invoice['total_amount']; ?></td> 

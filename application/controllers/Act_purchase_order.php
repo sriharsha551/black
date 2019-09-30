@@ -32,6 +32,7 @@
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
             $this->data['suppliers'] = $this->Act_purchase_order_model->get_suppliers();
             $this->data['items'] = $this->Act_purchase_order_model->get_items();
+            $this->data['prj_list'] = $this->Act_purchase_order_model->get_all_prj_list();
             // print_r($this->data['items']);
             $this->load->library('form_validation');
 
@@ -61,6 +62,7 @@
         $this->data['bills'] = $this->Act_purchase_order_model->get_order($id)[0];
         $this->data['suppliers'] = $this->Act_purchase_order_model->get_suppliers();
         $this->data['items'] = $this->Act_purchase_order_model->get_items();
+        $this->data['prj_list'] = $this->Act_purchase_order_model->get_all_prj_list();
         // print_r($this->data['items']);
         if (isset($this->data['bills']['id'])) {
             $this->form_validation->set_rules('sup_id', 'Supplier Id', 'required');

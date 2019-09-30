@@ -22,10 +22,9 @@
                         </tr>
                        </thead>
              <tbody>
-             <?php $index=1;?>
                     <?php foreach($cr as $d) {?>
                         <tr>
-                            <td><?php echo $index++; ?></td>
+                            <td><?php echo $d['id']; ?></td>
                             <td><?php echo $d['name']; ?></td>
                             <td><?php echo $d['days']; ?></td>
                                 <td>
