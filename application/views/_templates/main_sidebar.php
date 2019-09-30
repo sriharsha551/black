@@ -568,28 +568,59 @@
       </a>
       <ul class="sidenav-menu">
 
-        <li class="sidenav-item <?php if ($this->uri->segment(2) == "Joining") {echo "active";}?>">
-          <a href="<?php echo site_url('Employee/Joining'); ?>"class="sidenav-link sidenav-toggle">
-            <div>sub1</div>
+        <li class="sidenav-item <?php if ($this->uri->segment(2) == "Remaining_Mtrl_Status") {echo "active";}?>">
+          <a href="<?php echo site_url('Remaining_Mtrl_Status'); ?>"class="sidenav-link sidenav-toggle">
+            <div>Daily Progress Report</div>
           </a>
           <ul class="sidenav-menu">
+            
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Trade") {echo "open active";}?>">
+              <a href="<?php echo site_url('Trade'); ?>" class="sidenav-link">
+                <div>Trade</div>
+              </a>
+            </li> 
 
-            <li class="sidenav-item <?php if ($this->uri->segment(2) == "Joining") {echo "active";}?>">
-              <a href="<?php echo site_url('Employee/Joining'); ?>" class="sidenav-link">
-                <div>subsub1</div>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Machinary") {echo "open active";}?>">
+                <a href="<?php echo site_url('Machinary'); ?>" class="sidenav-link">
+                  <div>Machinary</div>
+                </a>
+            </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Vendors") {echo "open active";}?>">
+                <a href="<?php echo site_url('Vendors'); ?>" class="sidenav-link">
+                  <div>Vendors</div>
+                </a>
+            </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Area") {echo "open active";}?>">
+                <a href="<?php echo site_url('Area'); ?>" class="sidenav-link">
+                  <div>Area</div>
+                </a>
+            </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Labour_details") {echo "active";}?>">
+              <a href="<?php echo site_url('Labour_details'); ?>" class="sidenav-link">
+                <div>Labour Details</div>
               </a>
             </li>
-            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Employee" && ($this->uri->segment(2) == "" || $this->uri->segment(2) == "edit")) {echo "active";}?>">
-              <a href="<?php echo site_url('Employee'); ?>" class="sidenav-link">
-                <div>subsub2</div>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Exe_Reamining_Mtrl_Status") {echo "active";}?>">
+              <a href="<?php echo site_url('Exe_Remaining_Mtrl_Status'); ?>" class="sidenav-link">
+                <div>Remaining Material Status</div>
+              </a>
+            </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Exe_Tools" && ($this->uri->segment(2) == "" || $this->uri->segment(2) == "edit")) {echo "active";}?>">
+              <a href="<?php echo site_url('Exe_Tools'); ?>" class="sidenav-link">
+                <div>Tools & Tackles</div>
+              </a>
+            </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Exe_Work_Progress" && ($this->uri->segment(2) == "" || $this->uri->segment(2) == "edit")) {echo "active";}?>">
+              <a href="<?php echo site_url('Exe_Work_Progress'); ?>" class="sidenav-link">
+                <div>Work Progress</div>
+              </a>
+            </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Exe_Mtrl_Request" && ($this->uri->segment(2) == "" || $this->uri->segment(2) == "edit")) {echo "active";}?>">
+              <a href="<?php echo site_url('Exe_Mtrl_Request'); ?>" class="sidenav-link">
+                <div>Material Request</div>
               </a>
             </li>
           </ul>
-        </li>
-        <li class="sidenav-item <?php if ($this->uri->segment(1) == "Employee" && ($this->uri->segment(2) == "" || $this->uri->segment(2) == "edit")) {echo "active";}?>">
-          <a href="<?php echo site_url('Employee'); ?>" class="sidenav-link">
-            <div> sub2</div>
-          </a>
         </li>
       </ul>
     </li>

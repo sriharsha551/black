@@ -1,0 +1,66 @@
+<?php
+
+    class Exe_Mtrl_Request_Model extends CI_Model
+    {
+        public function __construct()
+        {
+            parent::__construct();
+        }
+
+        public function getCount()
+        {
+            $this->db->where('deleted_at',NULL);
+            return $this->db->get('exe_mtrl_request')->num_rows();
+        }
+
+        public function getData()
+        {
+            $this->db->where('t.deleted_at',NULL);
+            $this->db->select('t.id,p.name,m.material_name,t.qty');
+            $this->db->from('exe_mtrl_request as t');
+            $this->db->join('prj_list as p','t.prj_id = p.id','inner');
+            $this->db->join('prj_mtrl_items as m','t.mtrl_id = m.id','inner');
+            return $this->db->get()->result_array();
+        }
+
+        public function getProjects()
+        {
+            $this->db->where('delete_status','0');
+            return $this->db->get('prj_list')->result_array();
+        }
+
+        public function getMaterials()
+        {
+            $this->db->where('delete_status','0');
+            return $this->db->get('prj_mtrl_items')->result_array();
+        }
+
+        public function addData($data)
+        {
+            $data['created_at'] = date("Y-m-d H:i:s");
+            $this->db->insert('exe_mtrl_request',$data);
+            return $this->db->insert_id();
+        }
+
+        public function getDetail($id)
+        {
+            $this->db->where("id",$id);
+            return $this->db->get('exe_mtrl_request')->row_array();
+        }
+
+        public function editData($id,$data)
+        {
+            $data['updated_at'] = date("Y-m-d H:i:s");
+            $this->db->where('id',$id);
+            return $this->db->update('exe_mtrl_request',$data);
+        }
+
+        public function deleteData($id)
+        {
+            $data['deleted_at'] = date("Y-m-d H:i:s");
+            $this->db->where("id",$id);
+            return $this->db->update('exe_mtrl_request',$data);
+        }
+    }
+
+?>
