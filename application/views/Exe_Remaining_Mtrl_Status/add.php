@@ -100,13 +100,13 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
 							<label for="ponumber" class="form-label"><span class="text-danger">*</span>Purchase Number</label>
 							<div class="form-group">
 								<input type="text" name="ponumber" value="<?php if(isset($purchase)){echo $purchase['ponumber'];} ?>" class="form-control" id="ponumber" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('ponumber');?></span>
 							</div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-6">
 							<label for="qty_order" class="form-label"><span class="text-danger">*</span>Quantity Ordered</label>

@@ -7,11 +7,22 @@
 			<span class="text-muted font-weight-light"><?php echo $pagetitle; ?></span>
 			<?php echo $breadcrumb;?>
             <?php 
-                $GLOBALS['proj_id'] = null;
-                $GLOBALS['item_id'] = null;
+                $GLOBALS['proj_id'] = $mtrl_stat['prj_id'];
+                $GLOBALS['item_id'] = $mtrl_stat['material_id'];
                 $GLOBALS['purchase_id'] = null;
-                $selected = null;
-                $purchase = null;
+
+                foreach($projects as $pro){
+                    if($pro['id'] == $mtrl_stat['prj_id']){
+                        $selected = $pro;
+                }
+            }
+
+                foreach($items as $pro){
+                    if($pro['id'] == $mtrl_stat['material_id']){
+                        $selected_item = $pro;
+                }
+                }
+
 				if(isset($_POST['prj_id']))
                 {
                     $GLOBALS['proj_id'] = $_POST['prj_id'];
@@ -42,13 +53,11 @@
                     }
                 }
 
-                echo (form_error('prj_id')); 
-
 			?>
 		</h4>
     
 		<div class="card mb-4">
-            <h6 class="card-header">ADD</h6>
+            <h6 class="card-header">EDIT</h6>
 			<div class="card-body"> 
 				<div class="box-body">
 				<form action="" method="post" name="supp_form">
@@ -83,70 +92,70 @@
                         </div>
 				</div>
 				</form>
-            		<?php echo form_open('Exe_Remaining_Mtrl_Status/add'); ?>
+            		<?php echo form_open('Exe_Remaining_Mtrl_Status/edit/'.$mtrl_stat['id']); ?>
 					<div class="row clearfix">
                             <div class="col-md-6" style="display:none">
                             <label for="prj_id" class="form-label"><span class="text-danger">*</span>Project</label>
                             <div class='form-group'>
-                                <input type="hidden" name="prj_id" value="<?php if(isset($purchase)){echo $purchase['id'];} ?>" class="form-control" id="prj_id" />
+                                <input type="hidden" name="prj_id" value="<?php echo $selected['id'] ? $selected['id'] : $mtrl_stat['prj_id']; ?>" class="form-control" id="prj_id" />
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('prj_id');?></span>
                             </div>
                         </div>
                         <div class="col-md-6" style="display:none">
                             <label for="mtrl_id" class="form-label"><span class="text-danger">*</span>Items</label>
                             <div class='form-group'>
-                                <input type="hidden" name="mtrl_id" value="<?php if(isset($purchase)){echo $purchase['id'];} ?>" class="form-control" id="mtrl_id" />
+                                <input type="hidden" name="mtrl_id" value="<?php  echo $selected_item['id'] ? $selected_item['id'] : $mtrl_stat['material_id'];?>" class="form-control" id="mtrl_id" />
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('mtrl_id');?></span>
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
 							<label for="ponumber" class="form-label"><span class="text-danger">*</span>Purchase Number</label>
 							<div class="form-group">
-								<input type="text" name="ponumber" value="<?php if(isset($purchase)){echo $purchase['ponumber'];} ?>" class="form-control" id="ponumber" />
+								<input type="text" name="ponumber" value="<?php echo $purchase['ponumber'] ? $purchase['ponumber'] : $mtrl_stat['ponumber'] ?>" class="form-control" id="ponumber" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('ponumber');?></span>
 							</div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-6">
 							<label for="qty_order" class="form-label"><span class="text-danger">*</span>Quantity Ordered</label>
 							<div class="form-group">
-								<input type="text" name="qty_order" value="<?php if(isset($purchase)){echo $purchase['qty'];} ?>" class="form-control" id="qty_order" />
+								<input type="text" name="qty_order" value="<?php echo $purchase['qty'] ? $purchase['qty'] : $mtrl_stat['qty'] ?>" class="form-control" id="qty_order" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_order');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
 							<label for="order_date" class="form-label"><span class="text-danger">*</span>Ordered Date</label>
 							<div class="form-group">
-								<input type="date" name="order_date" value="<?php echo $this->input->post('order_date'); ?>" class="form-control" id="order_date" />
+								<input type="date" name="order_date" value="<?php echo $this->input->post('order_date') ? $this->input->post('order_date') : $mtrl_stat['order_date'];?>" class="form-control" id="order_date" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('order_date');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
 							<label for="qty_recived" class="form-label"><span class="text-danger">*</span>Quantity Recived</label>
 							<div class="form-group">
-								<input type="text" name="qty_recived" value="<?php echo $this->input->post('qty_recived');  ?>" class="form-control" id="qty_recived" />
+								<input type="text" name="qty_recived" value="<?php echo $this->input->post('qty_recived')?$this->input->post('qty_recived') : $mtrl_stat['qty_recived']  ?>" class="form-control" id="qty_recived" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_recived');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
 							<label for="recived_date" class="form-label"><span class="text-danger">*</span>Recived Date</label>
 							<div class="form-group">
-								<input type="date" name="recived_date" value="<?php echo $this->input->post('recived_date');  ?>" class="form-control" id="recived_date" />
+								<input type="date" name="recived_date" value="<?php echo $this->input->post('recived_date')? $this->input->post('recived_date'): $mtrl_stat['recived_date'] ; ?>" class="form-control" id="recived_date" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('recived_date');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
 							<label for="qty_utilised" class="form-label"><span class="text-danger">*</span>Quantity Utilized</label>
 							<div class="form-group">
-								<input type="text" name="qty_utilised" value="<?php echo $this->input->post('qty_utilised'); ?>" class="form-control" id="qty_utilised" />
+								<input type="text" name="qty_utilised" value="<?php echo $this->input->post('qty_utilised')? $this->input->post('qty_utilised'): $mtrl_stat['qty_utilised'] ;?>" class="form-control" id="qty_utilised" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_utilised');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
 							<label for="utl_date" class="form-label"><span class="text-danger">*</span>Utilized Date</label>
 							<div class="form-group">
-								<input type="date" name="utl_date" value="<?php echo $this->input->post('utl_date');  ?>" class="form-control" id="utl_date" />
+								<input type="date" name="utl_date" value="<?php echo $this->input->post('utl_date')? $this->input->post('utl_date'): $mtrl_stat['utl_date'] ; ?>" class="form-control" id="utl_date" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('utl_date');?></span>
 							</div>
                         </div>

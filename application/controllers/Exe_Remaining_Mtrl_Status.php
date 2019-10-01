@@ -72,7 +72,8 @@
         {
             $this->breadcrumbs->unshift(2, 'Edit', 'edit');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
-            $this->data['mtrl_stat'] = $this->Exe_Remaining_Mtrl_Status_Model->getData($id);
+            $this->data['mtrl_stat'] = $this->Exe_Remaining_Mtrl_Status_Model->getDetail($id);
+            print_r($this->data['mtrl_stat']);
             // print_r($this->data['items']);
             if (isset($this->data['mtrl_stat']['id'])) {
                 $this->form_validation->set_rules('prj_id','Project','required');
@@ -85,7 +86,17 @@
                 $this->form_validation->set_rules('utl_date','Utilized Date','required');
     
                 if ($this->form_validation->run()) {
-                    $params = $this->input->post();
+                    $params = array(
+                        'prj_id'=> $this->input->post('prj_id'),
+                        'material_id'=> $this->input->post('mtrl_id'),
+                        'qty_order'=> $this->input->post('qty_order'),
+                        'order_date'=> $this->input->post('order_date'),
+                        'qty_recived' => $this->input->post('qty_recived'),
+                        'recived_date' => $this->input->post('recived_date'),
+                        'qty_utilised' => $this->input->post('qty_utilised'),
+                        'utl_date' => $this->input->post('utl_date')
+                    );
+                    // print_r($params);
                     $this->Exe_Remaining_Mtrl_Status_Model->editData($id, $params);
                     redirect('Exe_Remaining_Mtrl_Status/index');
                 } else {
@@ -97,14 +108,17 @@
             }
         }
 
-        function delete($id)
+        function remove($id)
         {
-            $inv = $this->Exe_Remaining_Mtrl_Status_Model->getData($id);
+            $inv = $this->Exe_Remaining_Mtrl_Status_Model->getDetail($id);
             // check if the stage exists before trying to delete it
+            // print_r($inv);
             if (isset($inv['id'])) {
                 $this->Exe_Remaining_Mtrl_Status_Model->deleteData($id);
                 redirect('Exe_Remaining_Mtrl_Status/index');
             }
+            else
+                show_error('The status you are trying to delete does not exist.');
         }
     }
 
