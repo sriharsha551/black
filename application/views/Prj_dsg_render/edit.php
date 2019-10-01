@@ -20,8 +20,7 @@
 							<div class="form-group">
                                 <select class="form-control" name="prj_id" >
 							        <?php foreach($prj_names as $row) {?>
-									<!-- <option value="<?php echo $review_status['id'] ?>" ><?php echo $review_status['review_status_name'] ?></option> -->
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $this->input->post('prj_id')) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+										<option value='<?php echo $row->id?>' <?php echo (($this->input->post('prj_id') ? ($this->input->post('prj_id') == $row->id) : $row->id == $render['prj_id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 						        </select>
 							</div>
@@ -63,7 +62,7 @@
 							<div class="form-group">
 							<select name="review_status" value="<?php echo $this->input->post('review_status')?>" class="form-control" id="review_status">
                                 	<?php foreach ($review_statuses as $review_status) {?>
-                                	<option value="<?php echo $review_status['id'] ?>" <?php echo ($render['review_status'] == $review_status['id']) ? 'selected="selected"' : "" ?> ><?php echo $review_status['review_status_name'] ?></option>
+										<option value='<?php echo $review_status['id']?>' <?php echo (($this->input->post('review_status') ? ($this->input->post('review_status') == $review_status['id']) : $review_status['id'] == $render['review_status'])) ? 'selected="selected"' : "" ?> ><?php echo $review_status['review_status_name']?></option>
                                 	<?php } ?>
                             	</select>
 								<span class="text-danger"><?php echo form_error('review_status');?></span>

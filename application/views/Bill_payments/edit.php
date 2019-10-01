@@ -55,7 +55,7 @@
 							<div class="form-group">
 							<select class="form-control" name="coa_id" >
 							        <?php foreach($coa_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['coa_id'] || $this->input->post('coa_id') == $row->id) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+										<option value='<?php echo $row->id?>' <?php echo (($this->input->post('coa_id') ? ($this->input->post('coa_id') == $row->id) : $row->id == $bill['coa_id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
 								</select>	
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('coa_id');?></span>
@@ -67,7 +67,7 @@
 									<select name="prj_id" class="form-control" id="prj_id"  required>
                                 		<option value="">Select Project</option>
                                 		<?php foreach ($prj_list as $prj) { ?>
-                                		<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') == $prj['id']) || ($bill['prj_id'] == $prj['id'])) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
+											<option value="<?php echo $prj['id']; ?>" <?php echo (($this->input->post('prj_id') ? ($this->input->post('prj_id') == $prj['id']) : ($bill['prj_id'] == $prj['id']))) ? 'selected="selected"' : ""; ?> ><?php echo $prj['name']; ?></option>
                                 		<?php } ?>
                            			</select> 
 		 						</div>
@@ -105,7 +105,8 @@
 							<div class="form-group">
 							<select class="form-control" name="payment_method" >
 							        <?php foreach($pay_ids as $row) {?>
-  							        <option value='<?php echo $row->id?>' <?php echo ($row->id == $bill['payment_method'] || $this->input->post('payment_method') == $row->id ) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+									  <option value='<?php echo $row->id?>' <?php echo (($this->input->post('payment_method') ? ($this->input->post('payment_method') == $row->id) : $row->id == $bill['payment_method'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
+
 							        <?php }?>
 								</select>
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('payment_method');?></span>
