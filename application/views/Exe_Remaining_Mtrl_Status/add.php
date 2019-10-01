@@ -6,7 +6,7 @@
 		<h4 class="font-weight-bold py-2 mb-4">
 			<span class="text-muted font-weight-light"><?php echo $pagetitle; ?></span>
 			<?php echo $breadcrumb;?>
-			<?php 
+            <?php 
                 $GLOBALS['proj_id'] = null;
                 $GLOBALS['item_id'] = null;
                 $GLOBALS['purchase_id'] = null;
@@ -16,7 +16,6 @@
                 {
                     $GLOBALS['proj_id'] = $_POST['prj_id'];
                     foreach($projects as $pro){
-                        print_r($pro['id']);
                         if($pro['id'] == $GLOBALS['proj_id']){
                             $selected = $pro;
                             $_SESSION['error'] = false;
@@ -26,8 +25,7 @@
                 if(isset($_POST['mtrl_id']))
                 {
                     $GLOBALS['item_id'] = $_POST['mtrl_id'];
-                    foreach($mtrl_id as $i){
-                        print_r($i->id);
+                    foreach($items as $i){
                         if($i['id'] == $GLOBALS['item_id']){
                             $selected_item = $i;
                         }
@@ -37,14 +35,14 @@
                 if(isset($GLOBALS['item_id']) && isset($GLOBALS['proj_id']))
                 {
                     foreach($purchases as $p){
-                        if(($p['prj_id']==$GLOBALS['proj_id']) && ($p['item']==$GLOBALS['item_id']))
+                        if(($p['prj_id']==$GLOBALS['proj_id']) && ($p['items']==$GLOBALS['item_id']))
                         {
                             $purchase = $p;
                         }
                     }
                 }
 
-                print_r($purchase); 
+                echo (form_error('prj_id')); 
 
 			?>
 		</h4>
@@ -72,9 +70,9 @@
 							<div class="form-group">
                                 <select class="form-control" name="mtrl_id" onchange="this.form.submit();">
                                         <option value=''>select name</option>
-                                        <?php foreach($mtrl_id as $row) {?>
+                                        <?php foreach($items as $row) {?>
                                             <?php
-                                                if($row['proj_id'] == $GLOBALS['proj_id']){
+                                                if($row['prj_id'] == $GLOBALS['proj_id']){
                                             ?>
                                                 <option value='<?php echo $row['id']?>' <?php echo ($row['id'] == $GLOBALS['item_id']) ? 'selected="selected"' : "" ?> ><?php echo $row['id']." - ".$row['material_name']?></option>
                                                 <?php }?>
@@ -85,78 +83,71 @@
                         </div>
 				</div>
 				</form>
-            		<?php echo form_open('Act_purchase_order/add'); ?>
+            		<?php echo form_open('Exe_Remaining_Mtrl_Status/add'); ?>
 					<div class="row clearfix">
                             <div class="col-md-6" style="display:none">
                             <label for="prj_id" class="form-label"><span class="text-danger">*</span>Project</label>
                             <div class='form-group'>
-                                <input type="hidden" name="prj _id" value="<?php if(isset($selected)){echo $selected->id;} ?>" class="form-control" id="prj_id" />
+                                <input type="hidden" name="prj_id" value="<?php if(isset($purchase)){echo $purchase['id'];} ?>" class="form-control" id="prj_id" />
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('prj_id');?></span>
                             </div>
                         </div>
                         <div class="col-md-6" style="display:none">
-                            <label for="prj_id" class="form-label"><span class="text-danger">*</span>Items</label>
+                            <label for="mtrl_id" class="form-label"><span class="text-danger">*</span>Items</label>
                             <div class='form-group'>
-                                <input type="hidden" name="mtrl_id" value="<?php if(isset($selected)){echo $selected->id;} ?>" class="form-control" id="mtrl_id" />
+                                <input type="hidden" name="mtrl_id" value="<?php if(isset($purchase)){echo $purchase['id'];} ?>" class="form-control" id="mtrl_id" />
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('mtrl_id');?></span>
                             </div>
                         </div>
                         
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Purchase Number</label>
+							<label for="ponumber" class="form-label"><span class="text-danger">*</span>Purchase Number</label>
 							<div class="form-group">
-								<input type="text" name="ponumber" value="<?php echo $this->input->post('ponumber'); ?>" class="form-control" id="ponumber" />
+								<input type="text" name="ponumber" value="<?php if(isset($purchase)){echo $purchase['ponumber'];} ?>" class="form-control" id="ponumber" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('ponumber');?></span>
 							</div>
                         </div>
 
                         <div class="col-md-6">
-							<label for="name" class="form-label"><span class="text-danger">*</span>Supplier Name</label>
+							<label for="qty_order" class="form-label"><span class="text-danger">*</span>Quantity Ordered</label>
 							<div class="form-group">
-								<input type="text" name="sup_name" value="<?php if(isset($selected)){echo $selected->name;} ?>" class="form-control" id="sup_name" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('sup_name');?></span>
+								<input type="text" name="qty_order" value="<?php if(isset($purchase)){echo $purchase['qty'];} ?>" class="form-control" id="qty_order" />
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_order');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="attach_link" class="form-label"><span class="text-danger">*</span>Supplier Email</label>
+							<label for="order_date" class="form-label"><span class="text-danger">*</span>Ordered Date</label>
 							<div class="form-group">
-								<input type="text" name="sup_email" value="<?php if(isset($selected))echo $selected->email_id; ?>" class="form-control" id="sup_email" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('sup_email');?></span>
+								<input type="date" name="order_date" value="<?php echo $this->input->post('order_date'); ?>" class="form-control" id="order_date" />
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('order_date');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Supplier Phone</label>
+							<label for="qty_recived" class="form-label"><span class="text-danger">*</span>Quantity Recived</label>
 							<div class="form-group">
-								<input type="text" name="sup_phone" value="<?php if(isset($selected))echo $selected->contact_no_1; ?>" class="form-control" id="sup_phone" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('sup_phone');?></span>
+								<input type="text" name="qty_recived" value="<?php echo $this->input->post('qty_recived');  ?>" class="form-control" id="qty_recived" />
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_recived');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Supplier Address</label>
+							<label for="recived_date" class="form-label"><span class="text-danger">*</span>Recived Date</label>
 							<div class="form-group">
-								<input type="text" name="sup_address" value="<?php if(isset($selected))echo $selected->address; ?>" class="form-control" id="sup_address" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('sup_address');?></span>
+								<input type="date" name="recived_date" value="<?php echo $this->input->post('recived_date');  ?>" class="form-control" id="recived_date" />
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('recived_date');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger"></span>Description</label>
+							<label for="qty_utilised" class="form-label"><span class="text-danger">*</span>Quantity Utilized</label>
 							<div class="form-group">
-								<input type="text" name="description" value="<?php echo $this->input->post('description'); ?>" class="form-control" id="description" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('description');?></span>
+								<input type="text" name="qty_utilised" value="<?php echo $this->input->post('qty_utilised'); ?>" class="form-control" id="qty_utilised" />
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_utilised');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Amount</label>
+							<label for="utl_date" class="form-label"><span class="text-danger">*</span>Utilized Date</label>
 							<div class="form-group">
-								<input type="text" name="amount" value="<?php if(isset($selected_item))echo ($selected_item['price']); ?>" class="form-control" id="amount" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount');?></span>
-							</div>
-                        </div>
-                        <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
-							<div class="form-group">
-								<input type="text" name="remarks" value="<?php echo $this->input->post('remarks'); ?>" class="form-control" id="remarks" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('remarks');?></span>
+								<input type="date" name="utl_date" value="<?php echo $this->input->post('utl_date');  ?>" class="form-control" id="utl_date" />
+								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('utl_date');?></span>
 							</div>
                         </div>
 					</div>
