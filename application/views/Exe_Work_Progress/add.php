@@ -20,7 +20,7 @@
                                 <select class="form-control" name="prj_id" >
                                     <option value=''>select name</option>
                                     <?php foreach($projects as $row) {?>
-                                    <option value='<?php echo $row['id']?>'><?php echo $row['id']." - ".$row['name']?></option>
+                                    <option value='<?php echo $row['id']?>' <?php echo ($this->input->post('prj_id') == $row['id']) ? 'selected="selected"' : ""?>><?php echo $row['id']." - ".$row['name']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('prj_id');?></span>
@@ -41,7 +41,7 @@
                                 <select class="form-control" name="trade_id" >
                                     <option value=''>select name</option>
                                     <?php foreach($trades as $row) {?>
-                                    <option value='<?php echo $row['id']?>'><?php echo $row['id']." - ".$row['trade_name']?></option>
+                                    <option value='<?php echo $row['id']?>' <?php echo ($this->input->post('trade_id') == $row['id']) ? 'selected="selected"' : ""?>><?php echo $row['id']." - ".$row['trade_name']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('trade_id');?></span>
@@ -54,7 +54,7 @@
                                 <select class="form-control" name="area_id" >
                                     <option value=''>select name</option>
                                     <?php foreach($areas as $row) {?>
-                                    <option value='<?php echo $row['id']?>'><?php echo $row['id']." - ".$row['area']?></option>
+                                    <option value='<?php echo $row['id']?>' <?php echo ($this->input->post('area_id') == $row['id']) ? 'selected="selected"' : ""?>><?php echo $row['id']." - ".$row['area']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('area_id');?></span>

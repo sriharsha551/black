@@ -7,7 +7,7 @@ class Project_List extends User_Controller{
         $this->page_title->push('Project Summary');
         $this->data['pagetitle'] = $this->page_title->show();
 
-        $this->breadcrumbs->unshift(1, 'Project List', 'Project List');
+        $this->breadcrumbs->unshift(1, 'Project List', 'Project_List');
         $this->data['types'] = $this->Project_List_model->getTypes();
         $this->data['category'] = $this->Project_List_model->getCategories();
         $this->data['stages'] = $this->Project_List_model->getStages();
