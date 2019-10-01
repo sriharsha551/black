@@ -33,7 +33,7 @@
                             <!-- <th>Bill Item</th> -->
                             <!-- <th>Quantity</th> -->
                             <th>Unit Price</th>
-                            <th>Tax Amount</th> -->
+                            <th>Tax Amount</th>
                             <th>Total Amount</th>
                             <!-- <th>Tax</th>
                              <th>Remarks</th> -->

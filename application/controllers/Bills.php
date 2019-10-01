@@ -24,7 +24,7 @@ class Bills extends Admin_Controller
         $this->pagination->initialize($config);
         /* Breadcrumbs */
         $this->data['breadcrumb'] = $this->breadcrumbs->show();
-        $this->data['bills'] = $this->Bills_model->get_all_bills($params);
+        $this->data['bills'] = $this->Bills_model->get_all_bills();
         $this->template->public_render('Bills/index', $this->data);
     }
 

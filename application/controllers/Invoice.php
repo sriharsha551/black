@@ -59,8 +59,6 @@ class Invoice extends Admin_Controller
         $this->form_validation->set_rules('total_amount', 'Total Amount', 'required');
         // $this->form_validation->set_rules('remarks', 'Remarks', 'required');
 
-       
-
         if ($this->form_validation->run()) {
             $params = $this->input->post();
             $concept_id = $this->Invoice_model->add_invoice($params);

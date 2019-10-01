@@ -53,7 +53,7 @@
                         <div class="col-md-6">
 							<label for="name" class="form-label"><span class="text-danger">*</span>Coa Id</label>
 							<div class="form-group">
-							<select class="form-control" name="coa_id" >
+							<select class="form-control" name="coa_id" required>
 							        <?php foreach($coa_ids as $row) {?>
 										<option value='<?php echo $row->id?>' <?php echo (($this->input->post('coa_id') ? ($this->input->post('coa_id') == $row->id) : $row->id == $invoice['coa_id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
@@ -80,30 +80,30 @@
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Amount</label>
+							<label  class="form-label"><span class="text-danger">*</span>Amount</label>
 							<div class="form-group">
 							<input type="text" name="amount" value="<?php if(isset($GLOBALS['amount'])){echo $GLOBALS['amount'];} ?>" class="form-control" id="amount" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount');?></span>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Amount Recieved</label>
+							<label  class="form-label"><span class="text-danger">*</span>Amount Recieved</label>
 							<div class="form-group">
 								<input type="text" name="amount_recieved" value="<?php echo ($this->input->post('amount_recieved') ? $this->input->post('amount_recieved') : $invoice['amount_recieved']); ?>" class="form-control" id="amount_recieved" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount_recieved');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger"></span>Description</label>
+							<label  class="form-label"><span class="text-danger"></span>Description</label>
 							<div class="form-group">
 								<input type="text" name="description" value="<?php echo ($this->input->post('description') ? $this->input->post('description') : $invoice['description']); ?>" class="form-control" id="description" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('description');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Pay Method</label>
+							<label  class="form-label"><span class="text-danger">*</span>Pay Method</label>
 							<div class="form-group">
-							<select class="form-control" name="pay_method" >
+							<select class="form-control" name="pay_method" required>
 							        <?php foreach($pay_ids as $row) {?>
 										<option value='<?php echo $row->id?>' <?php echo (($this->input->post('pay_method') ? ($this->input->post('pay_method') == $row->id) : $row->id == $invoice['pay_method'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
@@ -112,14 +112,14 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
+							<label  class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $invoice['remarks']); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('remarks');?></span>
 							</div>
                         </div>
                         <!-- <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Transaction Type</label>
+							<label  class="form-label"><span class="text-danger">*</span>Transaction Type</label>
 							<div class="form-group">
 							<select class="form-control" name="tran_type_id" >
 							        <?php foreach($tran_ids as $row) {?>
