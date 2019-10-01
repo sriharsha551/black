@@ -31,7 +31,7 @@
                             <select name="group_id" class="form-control">
 								<option value="">Select Group</option>
 								<?php foreach ($group_list as $group) { ;?>
-									<option value="<?php echo $group['id'];?>" <?php echo ($this->input->post('group_id') == $group['id'] || $type_detail['group_id'] == $group['id']  ) ? 'selected="selected"' : ""; ?>>
+									<option value="<?php echo $group['id'];?>" <?php echo ($this->input->post('group_id') ? $this->input->post('group_id')== $group['id'] : $type_detail['group_id'] == $group['id']  ) ? 'selected="selected"' : ""; ?>>
 										<?php echo $group['name'];?>
 									</option>
 								<?php } ?>

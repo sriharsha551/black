@@ -41,7 +41,7 @@
 									<?php foreach(array_keys($dropdown_data) as $group) {?>
 										<optgroup label="<?php echo $group;?>">
 											<?php foreach($dropdown_data[$group] as $type) { ?>
-												<option value="<?php echo $type['id'];?>" <?php echo ($this->input->post('type_id') == $type['id'] ||  $coa_detail['type_id'] == $type['id'] ) ? 'selected="selected"' : ""; ?>>
+												<option value="<?php echo $type['id'];?>" <?php echo ($this->input->post('type_id') ? ($this->input->post('type_id') == $type['id']) :  $coa_detail['type_id'] == $type['id'] ) ? 'selected="selected"' : ""; ?>>
 													<?php echo $type['name'];?>
 												</option>
 											<?php } ?>

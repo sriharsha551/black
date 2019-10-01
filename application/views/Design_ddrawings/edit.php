@@ -23,9 +23,9 @@
                                 <select name="prj_id" class="form-control" id="prj_id">
                                     <?php foreach ($proj_list as $proj) { ?>
                                     <option value="<?php echo $proj['id'] ?>"
-                                        <?php echo (($design_ddrawings['prj_id'] == $proj['id']) || ($this->input->post('prj_id') == $proj['id'])) ? 'selected="selected"' : "" ?>>
+                                    <?php echo ($this->input->post('prj_id') ? ($this->input->post('prj_id') == $proj['id']) :($design_ddrawings['prj_id'] == $proj['id'])) ? 'selected="selected"' : "" ?>>
                                         <?php echo $proj['name'] ?></option>
-                                    <?php } ?>
+                                    <?php } ?> 
                                 </select>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                     <option value="">Select Status</option>
                                     <?php foreach ($review_statuses as $review_status) {?>
                                     <option value="<?php echo $review_status['id'] ?>"
-                                        <?php echo ($design_ddrawings['review_status'] == $review_status['id']) ? 'selected="selected"' : "" ?>>
+                                        <?php echo ($this->input->post('review_status') ? ($this->input->post('review_status') == $review_status['id']) :($design_ddrawings['review_status'] == $review_status['id'])) ? 'selected="selected"' : "" ?>>
                                         <?php echo $review_status['review_status_name'] ?></option>
                                     <?php } ?>
                                 </select>

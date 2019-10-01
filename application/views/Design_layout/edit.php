@@ -23,19 +23,7 @@
                                 <select name="prj_id" class="form-control" id="prj_id">
                                     <?php foreach ($proj_list as $proj) { ?>
                                     <option value="<?php echo $proj['id'] ?>"
-                                        <?php echo ($Design_layout['prj_id'] == $proj['id']) ? 'selected="selected"' : "" ?>>
-                                        <?php echo $proj['name'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="prj_id" class="form-label"><span class="text-danger">*</span>Project</label>
-                                <select name="prj_id" class="form-control" id="prj_id">
-                                    <?php foreach ($proj_list as $proj) { ?>
-                                    <option value="<?php echo $proj['id'] ?>"
-                                        <?php echo ($Design_layout['prj_id'] == $proj['id']) ? 'selected="selected"' : "" ?>>
+                                        <?php echo ($this->input->post('prj_id') ? ($this->input->post('prj_id') == $proj['id']) :($Design_layout['prj_id'] == $proj['id'])) ? 'selected="selected"' : "" ?>>
                                         <?php echo $proj['name'] ?></option>
                                     <?php } ?>
                                 </select>
@@ -79,7 +67,7 @@
                                     class="form-control" id="review_status">
                                     <?php foreach ($review_statuses as $review_status) {?>
                                     <option value="<?php echo $review_status['id'] ?>"
-                                        <?php echo (($Design_layout['review_status'] == $review_status['id']) || $this->input->post('review_status') ==$review_status['id'] ) ? 'selected="selected"' : "" ?>>
+                                        <?php echo ($this->input->post('review_status') ? ($this->input->post('review_status') == $review_status['id']) :($Design_layout['review_status'] == $review_status['id'])) ? 'selected="selected"' : "" ?>>
                                         <?php echo $review_status['review_status_name'] ?></option>
                                     <?php } ?>
                                 </select>
