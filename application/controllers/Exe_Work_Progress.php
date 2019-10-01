@@ -89,6 +89,7 @@
             
             else
             {     
+                print_r($this->input->post());
                 $this->template->public_render('Exe_Work_Progress/edit', $this->data);
             }
         }

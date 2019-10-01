@@ -20,7 +20,6 @@
                             $_SESSION['error'] = false;
                         }
                     }
-                    // print_r($selected);
                 }
 
                 if(isset($_POST['tool_id']))

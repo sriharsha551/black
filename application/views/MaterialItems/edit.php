@@ -18,9 +18,11 @@
 					
 					<label class="form-label"> Category</label>
 						<select class="custom-select" name="material_cat_id" required>
-						<option value="<?= $MaterialItems['material_cat_id'];?>" ><?= $MaterialItems['category'];?></option>
-						<?php foreach($MATERIALS as $material){?>
-                			<option value="<?=$material['id'];?>"><?=$material['material_category'];?></option>    
+						<!-- <option value="<?= $MaterialItems['material_cat_id'];?>" ><?= $MaterialItems['category'];?></option> -->
+						<?php foreach($MATERIALS as $row){?>
+                			<!-- <option value="<?=$material['id'];?>"><?=$material['material_category'];?></option> -->
+							<option value='<?php echo $row['id']?>' <?php echo (($this->input->post('material_cat_id') ? ($this->input->post('material_cat_id') == $row['id']) : $row['id'] == $MaterialItems['material_cat_id'])) ? 'selected="selected"' : "" ?> ><?php echo $row['material_category']?></option>
+    
         				<?php }?>
 						</select>
 						</div>
@@ -43,9 +45,10 @@
 						<div class="form-group col-md-6">	
 							<label class="form-label">Supplier</label>
 						<select class="custom-select" name="supplier" required>
-						<option value="<?=$MaterialItems['supplier_id']?>" ><?=$MaterialItems['supplier']?></option>
-						<?php foreach($SUPPLIER as $supplier){?>
-                			<option value="<?=$supplier['id'];?>"><?=$supplier['name'];?></option>    
+						<!-- <option value="<?=$MaterialItems['supplier_id']?>" ><?=$MaterialItems['supplier']?></option> -->
+						<?php foreach($SUPPLIER as $row){?>
+							<option value='<?php echo $row['id']?>' <?php echo (($this->input->post('supplier') ? ($this->input->post('supplier') == $row['id']) : $row['id'] == $MaterialItems['supplier_id'])) ? 'selected="selected"' : "" ?> ><?php echo $row['name']?></option>
+                			<!-- <option value="<?=$supplier['id'];?>"><?=$supplier['name'];?></option>     -->
         				<?php }?>
 						</select>
 						</div>

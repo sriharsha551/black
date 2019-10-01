@@ -23,7 +23,7 @@
 								<select name="type" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($types as $t) {?>
-                                        <option value="<?php echo $t['id']?>" ><?php echo $t['type']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo ($this->input->post('prj_id') == $t['id']) ? 'selected="selected"' : ""?> ><?php echo $t['type']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('type');?></span>
@@ -35,7 +35,7 @@
 								<select name="cat_name" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($category as $t) {?>
-                                        <option value="<?php echo $t['id']?>" ><?php echo $t['category']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo ($this->input->post('cat_name') == $t['id']) ? 'selected="selected"' : ""?> ><?php echo $t['category']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('cat_name');?></span>
@@ -60,7 +60,7 @@
 								<select name="stage" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($stages as $t) {?>
-                                        <option value="<?php echo $t['id']?>" ><?php echo $t['stage_name']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo ($this->input->post('stage') == $t['id']) ? 'selected="selected"' : ""?> ><?php echo $t['stage_name']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('stage');?></span>

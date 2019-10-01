@@ -22,7 +22,7 @@
 								<select name="type" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($types as $t) {?>
-                                        <option value="<?php echo $t['id']?>" <?php echo ($project['type'] == $t['type']) ? ' selected="selected"' : "";?> ><?php echo $t['type']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo (($this->input->post('type') ? ($this->input->post('type') == $t['id']) : $t['id'] == $project['type'])) ? 'selected="selected"' : ""?> ><?php echo $t['type']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('type');?></span>
@@ -34,7 +34,7 @@
 								<select name="cat_name" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($category as $t) {?>
-                                        <option value="<?php echo $t['id']?>" <?php echo ($project['category'] == $t['category']) ? ' selected="selected"' : "";?> ><?php echo $t['category']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo (($this->input->post('cat_name') ? ($this->input->post('cat_name') == $t['id']) : $t['id'] == $project['category'])) ? 'selected="selected"' : ""?> ><?php echo $t['category']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('cat_name');?></span>
@@ -53,7 +53,7 @@
 								<select name="stage" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($stages as $t) {?>
-                                        <option value="<?php echo $t['id']?>" <?php echo ($project['stage_name'] == $t['stage_name']) ? ' selected="selected"' : "";?>><?php echo $t['stage_name']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo (($this->input->post('stage') ? ($this->input->post('stage') == $t['id']) : $t['id'] == $project['stage_name'])) ? 'selected="selected"' : ""?>><?php echo $t['stage_name']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('stage');?></span>

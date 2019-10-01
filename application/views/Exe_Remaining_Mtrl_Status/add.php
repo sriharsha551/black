@@ -5,7 +5,7 @@
 
 		<h4 class="font-weight-bold py-2 mb-4">
 			<span class="text-muted font-weight-light"><?php echo $pagetitle; ?></span>
-			<?php echo $breadcrumb;?>
+			<?php echo $breadcrumb;?> 
             <?php 
                 $GLOBALS['proj_id'] = null;
                 $GLOBALS['item_id'] = null;
@@ -88,25 +88,25 @@
                             <div class="col-md-6" style="display:none">
                             <label for="prj_id" class="form-label"><span class="text-danger">*</span>Project</label>
                             <div class='form-group'>
-                                <input type="hidden" name="prj_id" value="<?php if(isset($purchase)){echo $purchase['id'];} ?>" class="form-control" id="prj_id" />
+                                <input type="hidden" name="prj_id" value="<?php if(isset($selected)){echo $selected['id'];} ?>" class="form-control" id="prj_id" />
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('prj_id');?></span>
                             </div>
                         </div>
                         <div class="col-md-6" style="display:none">
                             <label for="mtrl_id" class="form-label"><span class="text-danger">*</span>Items</label>
                             <div class='form-group'>
-                                <input type="hidden" name="mtrl_id" value="<?php if(isset($purchase)){echo $purchase['id'];} ?>" class="form-control" id="mtrl_id" />
+                                <input type="hidden" name="mtrl_id" value="<?php if(isset($selected_item)){echo $selected_item['id'];} ?>" class="form-control" id="mtrl_id" />
                                 <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('mtrl_id');?></span>
                             </div>
                         </div>
                         
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
 							<label for="ponumber" class="form-label"><span class="text-danger">*</span>Purchase Number</label>
 							<div class="form-group">
 								<input type="text" name="ponumber" value="<?php if(isset($purchase)){echo $purchase['ponumber'];} ?>" class="form-control" id="ponumber" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('ponumber');?></span>
 							</div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-6">
 							<label for="qty_order" class="form-label"><span class="text-danger">*</span>Quantity Ordered</label>

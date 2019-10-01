@@ -65,7 +65,7 @@
 							</div>
                         </div>
 				</div>
-				</form>
+				</form> 
             		<?php echo form_open('Exe_Tools/edit/'.$tnt['id']); ?>
 
                     <div class="col-md-6" style="display:none">

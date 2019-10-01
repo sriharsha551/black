@@ -620,6 +620,26 @@
                 <div>Material Request</div>
               </a>
             </li>
+            <li class="sidenav-item <?php if ($this->uri->segment(1) == "Account_groups") {echo "open active";}?>">
+          <a href="<?php echo site_url('Exe_nextday_schedule'); ?>" class="sidenav-link">
+            <div>Execution NextDay Schedule</div>
+          </a>
+      </li>
+      <li class="sidenav-item <?php if ($this->uri->segment(1) == "Account_groups") {echo "open active";}?>">
+          <a href="<?php echo site_url('Exe_tools_rent'); ?>" class="sidenav-link">
+            <div>Execution Tools Rent</div>
+          </a>
+      </li>
+      <li class="sidenav-item <?php if ($this->uri->segment(1) == "Account_groups") {echo "open active";}?>">
+          <a href="<?php echo site_url('Exe_issue'); ?>" class="sidenav-link">
+            <div>Execution Issues</div>
+          </a>
+      </li>
+      <li class="sidenav-item <?php if ($this->uri->segment(1) == "Account_groups") {echo "open active";}?>">
+          <a href="<?php echo site_url('Exe_client_request'); ?>" class="sidenav-link">
+            <div>Execution Client Request</div>
+          </a>
+      </li>
           </ul>
         </li>
       </ul>
