@@ -21,29 +21,29 @@
 								<select name="prj_id" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($projects as $t) {?>
-                                        <option value="<?php echo $t['id']?>" <?php echo ($req['prj_id'] == $t['id']) ? ' selected="selected"' : "";?> ><?php echo $t['name']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo (($this->input->post('prj_id') ? ($this->input->post('prj_id') == $t['id']) : $t['id'] == $req['prj_id'])) ? 'selected="selected"' : "" ?> ><?php echo $t['name']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('prj_id');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="date" class="form-label"><span class="text-danger">*</span>Work Description</label>
+							<label for="date" class="form-label"><span class="text-danger">*</span>Date</label>
 							<div class="form-group">
                             <input type="text" name="date" value="<?php echo ($this->input->post('date') ? $this->input->post('date') : $req['date']); ?>" class="form-control" id="type" />
 								<span class="text-danger"><?php echo form_error('date');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
-                            <label for="mtrl_id" class="form-label"><span class="text-danger">*</span>Trade</label>
+                            <label for="trade_id" class="form-label"><span class="text-danger">*</span>Trade</label>
                             <div class="form-group">
-								<select name="mtrl_id" class="form-control">
+								<select name="trade_id" class="form-control">
                                     <option value="">Select </option>
                                     <?php foreach($trades as $t) {?>
-                                        <option value="<?php echo $t['id']?>" <?php echo ($req['trade_id'] == $t['id']) ? ' selected="selected"' : "";?> ><?php echo $t['trade_name']?></option>
+                                        <option value="<?php echo $t['id']?>" <?php echo  (($this->input->post('trade_id') ? ($this->input->post('trade_id') == $t['id']) : $t['id'] == $req['trade_id'])) ? 'selected="selected"' : "";?> ><?php echo $t['trade_name']?></option>
                                     <?php }?>
                                 </select>
-                                <span class="text-danger"><?php echo form_error('mtrl_id');?></span>
+                                <span class="text-danger"><?php echo form_error('trade_id');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
@@ -52,7 +52,7 @@
                                 <select class="form-control" name="area_id" >
                                     <option value=''>select name</option>
                                     <?php foreach($areas as $row) {?>
-                                    <option value='<?php echo $row['id']?>'<?php echo ($req['area_id'] == $row['id']) ? 'selected = selected':''  ?>><?php echo $row['id']." - ".$row['area']?></option>
+                                    <option value='<?php echo $row['id']?>'<?php echo (($this->input->post('area_id') ? ($this->input->post('area_id') == $row['id']) : $row['id'] == $req['area_id'])) ? 'selected="selected"' : ""  ?>><?php echo $row['id']." - ".$row['area']?></option>
                                     <?php }?>
                                 </select>
                                 <span class="text-danger"><?php echo form_error('area_id');?></span>

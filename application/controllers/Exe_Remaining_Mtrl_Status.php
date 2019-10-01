@@ -73,8 +73,6 @@
             $this->breadcrumbs->unshift(2, 'Edit', 'edit');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
             $this->data['mtrl_stat'] = $this->Exe_Remaining_Mtrl_Status_Model->getDetail($id);
-            print_r($this->data['mtrl_stat']);
-            // print_r($this->data['items']);
             if (isset($this->data['mtrl_stat']['id'])) {
                 $this->form_validation->set_rules('prj_id','Project','required');
                 $this->form_validation->set_rules('mtrl_id','Material','required');

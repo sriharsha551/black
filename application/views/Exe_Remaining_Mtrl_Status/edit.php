@@ -29,7 +29,7 @@
                     foreach($projects as $pro){
                         if($pro['id'] == $GLOBALS['proj_id']){
                             $selected = $pro;
-                            $_SESSION['error'] = false;
+                            $_SESSION['edit_error'] = false;
                         }
                     }
                 }
@@ -87,7 +87,7 @@
                                                 <?php }?>
                                         <?php }?>
                                 </select>
-                                <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('mtrl_id');?></span>
+                                <span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('mtrl_id');?></span>
 							</div>
                         </div>
 				</div>
@@ -98,14 +98,14 @@
                             <label for="prj_id" class="form-label"><span class="text-danger">*</span>Project</label>
                             <div class='form-group'>
                                 <input type="hidden" name="prj_id" value="<?php echo $selected['id'] ? $selected['id'] : $mtrl_stat['prj_id']; ?>" class="form-control" id="prj_id" />
-                                <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('prj_id');?></span>
+                                <span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('prj_id');?></span>
                             </div>
                         </div>
                         <div class="col-md-6" style="display:none">
                             <label for="mtrl_id" class="form-label"><span class="text-danger">*</span>Items</label>
                             <div class='form-group'>
                                 <input type="hidden" name="mtrl_id" value="<?php  echo $selected_item['id'] ? $selected_item['id'] : $mtrl_stat['material_id'];?>" class="form-control" id="mtrl_id" />
-                                <span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('mtrl_id');?></span>
+                                <span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('mtrl_id');?></span>
                             </div>
                         </div>
                         
@@ -113,50 +113,50 @@
 							<label for="ponumber" class="form-label"><span class="text-danger">*</span>Purchase Number</label>
 							<div class="form-group">
 								<input type="text" name="ponumber" value="<?php echo $purchase['ponumber'] ? $purchase['ponumber'] : $mtrl_stat['ponumber'] ?>" class="form-control" id="ponumber" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('ponumber');?></span>
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('ponumber');?></span>
 							</div>
                         </div> -->
 
                         <div class="col-md-6">
 							<label for="qty_order" class="form-label"><span class="text-danger">*</span>Quantity Ordered</label>
 							<div class="form-group">
-								<input type="text" name="qty_order" value="<?php echo $purchase['qty'] ? $purchase['qty'] : $mtrl_stat['qty'] ?>" class="form-control" id="qty_order" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_order');?></span>
+								<input type="text" name="qty_order" value="<?php if(isset($purchase)){echo $purchase['qty'] ? $purchase['qty'] : $mtrl_stat['qty'];} ?>" class="form-control" id="qty_order" />
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('qty_order');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
 							<label for="order_date" class="form-label"><span class="text-danger">*</span>Ordered Date</label>
 							<div class="form-group">
 								<input type="date" name="order_date" value="<?php echo $this->input->post('order_date') ? $this->input->post('order_date') : $mtrl_stat['order_date'];?>" class="form-control" id="order_date" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('order_date');?></span>
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('order_date');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
 							<label for="qty_recived" class="form-label"><span class="text-danger">*</span>Quantity Recived</label>
 							<div class="form-group">
 								<input type="text" name="qty_recived" value="<?php echo $this->input->post('qty_recived')?$this->input->post('qty_recived') : $mtrl_stat['qty_recived']  ?>" class="form-control" id="qty_recived" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_recived');?></span>
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('qty_recived');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
 							<label for="recived_date" class="form-label"><span class="text-danger">*</span>Recived Date</label>
 							<div class="form-group">
 								<input type="date" name="recived_date" value="<?php echo $this->input->post('recived_date')? $this->input->post('recived_date'): $mtrl_stat['recived_date'] ; ?>" class="form-control" id="recived_date" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('recived_date');?></span>
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('recived_date');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
 							<label for="qty_utilised" class="form-label"><span class="text-danger">*</span>Quantity Utilized</label>
 							<div class="form-group">
 								<input type="text" name="qty_utilised" value="<?php echo $this->input->post('qty_utilised')? $this->input->post('qty_utilised'): $mtrl_stat['qty_utilised'] ;?>" class="form-control" id="qty_utilised" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('qty_utilised');?></span>
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('qty_utilised');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
 							<label for="utl_date" class="form-label"><span class="text-danger">*</span>Utilized Date</label>
 							<div class="form-group">
 								<input type="date" name="utl_date" value="<?php echo $this->input->post('utl_date')? $this->input->post('utl_date'): $mtrl_stat['utl_date'] ; ?>" class="form-control" id="utl_date" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('utl_date');?></span>
+								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('utl_date');?></span>
 							</div>
                         </div>
 					</div>
