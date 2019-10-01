@@ -7,7 +7,7 @@
 	<?php echo $breadcrumb; ?>
 </h4>
       	<div class="card mb-4">
-          <h6 class="card-header">Account_items Edit</h6>
+          <h6 class="card-header">Account Items Edit</h6>
             
             <div class="box card">
                 <div class="card-body"> 
@@ -40,9 +40,13 @@
 					<div class="form-group col-md-6">
 					<label class="form-label">Enabled</label>
 						<select class="custom-select" name="enabled" required>
-						<option value="<?= $Account_items['enabled'];?>" ><?= $Account_items['enabled'];?></option>
+
+						<option value="0" <?php echo ($this->input->post('enabled') == "0" || $Account_items['enabled'] == "0") ? 'selected="selected"' : ""; ?>>Yes</option>
+                        <option value="1" <?php echo ($this->input->post('enabled') == "1" || $Account_items['enabled'] == "1") ? 'selected="selected"' : ""; ?>>No</option>
+                           
+						<!-- <option value="<?= $Account_items['enabled'];?>" ><?= $Account_items['enabled'];?></option>
                 			<option value="0">Yes</option>
-							<option value="1">No</option>    
+							<option value="1">No</option>     -->
 						</select>
 						</div>
 				</div>
