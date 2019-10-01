@@ -67,6 +67,45 @@
                 $this->template->public_render('Exe_Remaining_Mtrl_Status/add', $this->data);
             }
         }
+
+        function edit($id)
+        {
+            $this->breadcrumbs->unshift(2, 'Edit', 'edit');
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
+            $this->data['mtrl_stat'] = $this->Exe_Remaining_Mtrl_Status_Model->getData($id);
+            // print_r($this->data['items']);
+            if (isset($this->data['mtrl_stat']['id'])) {
+                $this->form_validation->set_rules('prj_id','Project','required');
+                $this->form_validation->set_rules('mtrl_id','Material','required');
+                $this->form_validation->set_rules('qty_order','Quantity','required');
+                $this->form_validation->set_rules('order_date','Ordered Date','required');
+                $this->form_validation->set_rules('qty_recived','Quantity Recived','required');
+                $this->form_validation->set_rules('recived_date','Recived Date','required');
+                $this->form_validation->set_rules('qty_utilised','Utilized quantity','required');
+                $this->form_validation->set_rules('utl_date','Utilized Date','required');
+    
+                if ($this->form_validation->run()) {
+                    $params = $this->input->post();
+                    $this->Exe_Remaining_Mtrl_Status_Model->editData($id, $params);
+                    redirect('Exe_Remaining_Mtrl_Status/index');
+                } else {
+                    $_SESSION['edit_error'] = true;
+                    $this->template->public_render('Exe_Remaining_Mtrl_Status/edit', $this->data);
+                }
+            } else {
+                show_error('The data you are trying to edit does not exist.');
+            }
+        }
+
+        function delete($id)
+        {
+            $inv = $this->Exe_Remaining_Mtrl_Status_Model->getData($id);
+            // check if the stage exists before trying to delete it
+            if (isset($inv['id'])) {
+                $this->Exe_Remaining_Mtrl_Status_Model->deleteData($id);
+                redirect('Exe_Remaining_Mtrl_Status/index');
+            }
+        }
     }
 
 ?>

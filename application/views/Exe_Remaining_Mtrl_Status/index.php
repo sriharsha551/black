@@ -17,7 +17,7 @@
                     <table class="datatables-demo table table-striped table-bordered">
                         <thead>
                         <tr>
-                            <th rowspan = "2">ID</th>
+                            <th>ID</th>
                             <th>Project</th>
                             <th>Material</th>
                             <th>Quantity Ordered</th>
