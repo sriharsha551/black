@@ -105,7 +105,7 @@
 							<div class="form-group">
 							<select class="form-control" name="order_num"  >
 							<?php foreach($order_num as $row) {?>
-  							<option value='<?php echo $row->id?>' <?php echo (($this->input->post('order_num') == $row->id) || $row->id == $invoices['order_num']) ? 'selected="selected"' : "" ?> ><?php echo $row->ponumber?></option>
+  							<option value='<?php echo $row->id?>' <?php echo (($this->input->post('order_num') ? ($this->input->post('order_num') == $row->id) : $row->id == $invoices['order_num'])) ? 'selected="selected"' : "" ?> ><?php echo $row->ponumber?></option>
 							<?php }?>
 							</select>
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('order_num');?></span>

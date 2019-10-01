@@ -109,8 +109,6 @@ class Invoice extends Admin_Controller
                 redirect('Invoice/index');
             } else {
                 $_SESSION['edit_error'] = true;
-                print_r($this->input->post());
-                print_r($this->data['invoices']);
                 $this->template->public_render('Invoice/edit', $this->data);
             }
         } else {

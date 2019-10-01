@@ -106,8 +106,6 @@ class Bills extends Admin_Controller
                 redirect('Bills/index');
             } else {
                 $_SESSION['edit_error'] = true;
-                print_r($this->input->post());
-                print_r($this->data['bills']);
                 $this->template->public_render('Bills/edit', $this->data);
             }
         } else {
