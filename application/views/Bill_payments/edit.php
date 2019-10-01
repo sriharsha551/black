@@ -53,7 +53,7 @@
                         <div class="col-md-6">
 							<label for="name" class="form-label"><span class="text-danger">*</span>Coa Id</label>
 							<div class="form-group">
-							<select class="form-control" name="coa_id" >
+							<select class="form-control" name="coa_id" required>
 							        <?php foreach($coa_ids as $row) {?>
 										<option value='<?php echo $row->id?>' <?php echo (($this->input->post('coa_id') ? ($this->input->post('coa_id') == $row->id) : $row->id == $bill['coa_id'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 							        <?php }?>
@@ -103,7 +103,7 @@
                         <div class="col-md-6">
 							<label  class="form-label"><span class="text-danger">*</span>Pay Method</label>
 							<div class="form-group">
-							<select class="form-control" name="payment_method" >
+							<select class="form-control" name="payment_method" required >
 							        <?php foreach($pay_ids as $row) {?>
 									  <option value='<?php echo $row->id?>' <?php echo (($this->input->post('payment_method') ? ($this->input->post('payment_method') == $row->id) : $row->id == $bill['payment_method'])) ? 'selected="selected"' : "" ?> ><?php echo $row->name?></option>
 

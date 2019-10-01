@@ -15,12 +15,12 @@
 				if(isset($_POST['bill_id']))
 				{
 					$GLOBALS['bill_id'] = $_POST['bill_id'];
-					$_SESSION['error'] = false;
 					foreach($amounts as $amount)
 					{
 						if($amount->id == $_POST['bill_id'])
 						{
 							$GLOBALS['amount'] = $amount->total_amt;
+							$_SESSION['error'] = false;
 						}
 					}
 				}
@@ -59,7 +59,7 @@
                         <div class="col-md-6">
 							<label for="name" class="form-label"><span class="text-danger">*</span>Coa Id</label>
 							<div class="form-group">
-							<select class="form-control" name="coa_id">
+							<select class="form-control" name="coa_id" required>
 							<option value=''>select name</option>
 							<?php foreach($coa_ids as $row) {?>
   							<option value='<?php echo $row->id?>'  <?php echo (($this->input->post('coa_id') == $row->id)) ? 'selected="selected"' : ""; ?>><?php echo $row->name?></option>
@@ -87,30 +87,30 @@
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Amount</label>
+							<label  class="form-label"><span class="text-danger">*</span>Amount</label>
 							<div class="form-group">
-							<input type="text" name="amount" value="<?php if(isset($GLOBALS['amount']))echo $GLOBALS['amount']; ?>" class="form-control" id="amount" />
+							<input type="text" name="amount" value="<?php if(isset($GLOBALS['amount']))echo $GLOBALS['amount'];else echo $this->input->post('amount');  ?>" class="form-control" id="amount" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount');?></span>
 							</div>
 						</div>
 						<div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Amount Paid</label>
+							<label  class="form-label"><span class="text-danger">*</span>Amount Paid</label>
 							<div class="form-group">
 								<input type="text" name="amount_paid" value="<?php echo $this->input->post('amount_paid'); ?>" class="form-control" id="amount_paid" />
-								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('amount');?></span>
+								<span class="text-danger"><?php  if($_SESSION['error']==true)echo form_error('amount');?></span>
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger"></span>Description</label>
+							<label  class="form-label"><span class="text-danger"></span>Description</label>
 							<div class="form-group">
 								<input type="text" name="description" value="<?php echo $this->input->post('description'); ?>" class="form-control" id="description" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('description');?></span>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Pay Method</label>
+							<label  class="form-label"><span class="text-danger">*</span>Pay Method</label>
 							<div class="form-group">
-							<select class="form-control" name="payment_method">
+							<select class="form-control" name="payment_method" required>
 							<option value=''>select name</option>
 							<?php foreach($pay_ids as $row) {?>
   							<option value='<?php echo $row->id?>'><?php echo $row->name?></option>
@@ -120,14 +120,14 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger"></span>Remarks</label>
+							<label  class="form-label"><span class="text-danger"></span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo $this->input->post('remarks'); ?>" class="form-control" id="remarks" />
 								<span class="text-danger"><?php if($_SESSION['error']==true)echo form_error('remarks');?></span>
 							</div>
                         </div>
                         <!-- <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Transaction Type</label>
+							<label  class="form-label"><span class="text-danger">*</span>Transaction Type</label>
 							<div class="form-group">
 							<select class="form-control" name="tran_type_id">
 							<option value=''>select name</option>

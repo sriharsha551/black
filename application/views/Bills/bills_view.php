@@ -77,25 +77,25 @@
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Supplier Phone</label>
+							<label  class="form-label"><span class="text-danger">*</span>Supplier Phone</label>
 							<div class="form-group">
 								<input type="text" name="sup_phone" value="<?php echo $selected->contact_no_1 ? $selected->contact_no_1 : $bills['sup_phone']; ?>" class="form-control" id="sup_phone" disabled/>
 							</div>
 						</div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Supplier Address</label>
+							<label  class="form-label"><span class="text-danger">*</span>Supplier Address</label>
 							<div class="form-group">
 								<input type="text" name="sup_address" value="<?php echo $selected->address ? $selected->address : $bills['sup_address']; ?>" class="form-control" id="sup_address" disabled/>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Bill Number</label>
+							<label  class="form-label"><span class="text-danger">*</span>Bill Number</label>
 							<div class="form-group">
 								<input type="text" name="bill_num" value="<?php echo ($this->input->post('bill_num') ? $this->input->post('bill_num') : $bills['bill_num']); ?>" class="form-control" id="bill_num" disabled/>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Order Number</label>
+							<label  class="form-label"><span class="text-danger">*</span>Order Number</label>
 							<div class="form-group">
 							<select class="form-control" name="order_num" disabled >
 							<?php foreach($order_num as $row) {?>
@@ -105,7 +105,7 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Bill Status</label>
+							<label  class="form-label"><span class="text-danger">*</span>Bill Status</label>
 							<div class="form-group">
 							<select class="form-control" name="bill_status" disabled >
 							<?php foreach($bill_status as $row) {?>
@@ -115,13 +115,13 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Bill Date</label>
+							<label  class="form-label"><span class="text-danger">*</span>Bill Date</label>
 							<div class="form-group">
 								<input type="date" name="bill_date" value="<?php echo ($this->input->post('bill_date') ? $this->input->post('bill_date') : $bills['bill_date']); ?>" class="form-control" id="bill_date" disabled/>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Credit Days</label>
+							<label  class="form-label"><span class="text-danger">*</span>Credit Days</label>
 							<div class="form-group">
 							<select class="form-control" name="cr_days_id" disabled >
 							<?php foreach($credit as $row) {?>
@@ -131,26 +131,26 @@
 							</div>
                         </div>
                         <!-- <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Bill Item</label>
+							<label  class="form-label"><span class="text-danger">*</span>Bill Item</label>
 							<div class="form-group">
 								<input type="text" name="bill_item" value="<?php echo ($this->input->post('bill_item') ? $this->input->post('bill_item') : $bills['bill_item']); ?>" class="form-control" id="bill_item" />
 								<span class="text-danger"><?php if($_SESSION['edit_error']==true)echo form_error('bill_item');?></span>
 							</div>
                         </div> -->
                         <!-- <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Quantity</label>
+							<label  class="form-label"><span class="text-danger">*</span>Quantity</label>
 							<div class="form-group">
 								<input type="text" name="qty" value="<?php echo ($this->input->post('qty') ? $this->input->post('qty') : $bills['qty']); ?>" class="form-control" id="qty" disabled/>
 							</div>
                         </div> -->
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Unit Price</label>
+							<label  class="form-label"><span class="text-danger">*</span>Unit Price</label>
 							<div class="form-group">
 								<input type="text" name="price" value="<?php echo ($this->input->post('price') ? $this->input->post('price') : $bills['price']); ?>" class="form-control" id="price" disabled/>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Tax</label>
+							<label  class="form-label"><span class="text-danger">*</span>Tax</label>
 							<div class="form-group">
 							<select class="form-control" name="tax_id" disabled >
 							<?php foreach($tax as $row) {?>
@@ -160,19 +160,19 @@
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Tax Amount</label>
+							<label  class="form-label"><span class="text-danger">*</span>Tax Amount</label>
 							<div class="form-group">
 								<input type="text" name="tax_amt" value="<?php echo ($this->input->post('tax_amt') ? $this->input->post('tax_amt') : $bills['tax_amt']); ?>" class="form-control" id="tax_amt" disabled/>
 							</div>
                         </div>
 						<div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Total Amount</label>
+							<label  class="form-label"><span class="text-danger">*</span>Total Amount</label>
 							<div class="form-group">
 								<input type="text" name="total_amt" value="<?php echo ($this->input->post('total_amt') ? $this->input->post('total_amt') : $bills['total_amt']); ?>" class="form-control" id="total_amt" disabled/>
 							</div>
                         </div>
                         <div class="col-md-6">
-							<label for="percentage" class="form-label"><span class="text-danger">*</span>Remarks</label>
+							<label  class="form-label"><span class="text-danger">*</span>Remarks</label>
 							<div class="form-group">
 								<input type="text" name="remarks" value="<?php echo ($this->input->post('remarks') ? $this->input->post('remarks') : $bills['remarks']); ?>" class="form-control" id="remarks" disabled/>
 							</div>
